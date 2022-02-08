@@ -201,6 +201,6 @@ class Assets extends CI_Controller {
 	}
 }
 
-/* Version 1.0 */
+/* Version 1.1 */
 /* End of file Assets.php */
 /* Location: ./application/controllers/Assets.php */
