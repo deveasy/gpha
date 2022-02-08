@@ -1,0 +1,205 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Assets extends CI_Controller {
+
+	private $date;
+
+	public function __construct(){
+		parent::__construct();
+
+		if(!$this->session->userdata('logged_in')){
+            redirect('auth','refresh');
+        }
+
+		$this->load->model('assets_model');
+	}
+
+	public function index()
+	{
+		$asset_count = array();
+		$available_count = array();
+
+		$assets = $this->assets_model->get_asset_categories();
+		$data['assets'] = $this->assets_model->get_asset_categories();
+
+		//get the total number of assets in a type
+		foreach($assets as $asset){
+			$asset_count[$asset->asset_type_id] = $this->assets_model->count_asset_type($asset->asset_type_id);
+		}
+
+		$data['asset_count'] = $asset_count;
+
+		//get the total number of available assets in a type
+		foreach($assets as $asset){
+			$available_count[$asset->asset_type_id] = $this->assets_model->count_available_assets($asset->asset_type_id);
+		}
+		$data['available_assets'] = $available_count;
+
+		$this->load->view('assets/view_assets_categories', $data);
+	}
+	
+
+	public function view_assets($asset_type_id){
+		$data['assets'] = $this->assets_model->get_assets($asset_type_id);
+		$this->load->view('assets/view_assets', $data);
+	}
+
+	public function location_assets(){
+		if($this->input->post('location') == 'all'){
+			redirect('assets');
+		}
+		else{
+			if($this->uri->segment(3)){
+				$location_id = $this->uri->segment(3);
+			}
+			else{
+				$location_id = $this->input->post('location');
+			}
+		}
+
+		$data['location_id'] = $location_id;
+		$data['location_name'] = $this->assets_model->get_location_name($location_id)->location_name;
+		$data['locations'] = $this->assets_model->get_locations();
+		$data['assets'] = $this->assets_model->get_location_assets($location_id);
+
+		$this->load->view('view_location_assets', $data);
+	}
+
+	public function new_category(){
+		$data['categories'] = $this->assets_model->get_asset_categories();
+		$this->load->view('assets/add_asset_category', $data);
+	}
+
+	public function add_category(){
+		$this->assets_model->add_asset_category();
+
+		redirect('assets/new_category');
+	}
+
+	public function new_asset(){
+		$data['categories'] = $this->assets_model->get_asset_categories();
+		$data['locations'] = $this->assets_model->get_locations();
+		$this->load->view('assets/add_asset', $data);
+	}
+
+	public function add_asset(){
+		$this->assets_model->add_asset();
+		$this->session->set_flashdata('asset_add','asset successfully added');
+		
+		//add the new asset to location inventory
+		$add_option = $this->input->post('add_option');
+		if($add_option == 'all'){
+			$locations = $this->assets_model->get_locations();
+			foreach($locations as $location){
+				$this->assets_model->add_asset_to_location($location->location_id, 2000);
+			}
+		}
+		else{
+			$this->assets_model->add_asset_to_location($add_option, 2000);
+		}
+		
+		redirect('assets');
+	}
+
+	public function edit_asset($id){
+		$data['asset'] = $this->assets_model->get_asset($id);
+		$data['locations'] = $this->assets_model->get_locations();
+		$this->load->view('edit_asset',$data);
+	}
+
+	function edit_location_asset($asset_code, $location_id){
+		$data['location_id'] = $location_id;
+		$data['asset'] = $this->assets_model->get_location_asset($asset_code, $location_id);
+		$this->load->view('edit_location_asset', $data);
+	}
+
+	public function update_asset($asset_code){
+		$update_option = $this->input->post('update_option');
+		
+		if(!empty($update_option)){
+			if($update_option == 'all'){
+				$this->assets_model->update_price($asset_code);
+				$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
+				redirect('assets');
+			}
+			else{
+				$this->assets_model->update_location_price($asset_code, $update_option);
+				$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
+				redirect('assets');
+			}
+		}
+		else{
+			$this->assets_model->update_asset($asset_code);
+			$this->assets_model->update_price($asset_code);
+			$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
+			redirect('assets');
+		}
+	}
+
+	function update_location_asset($asset_code, $location_id){
+		$this->assets_model->update_location_price($asset_code, $location_id);
+		$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
+		redirect('assets/location_assets/'.$location_id);
+	}
+
+	//update the quantities for each asset in location
+	//after taking of stock with csv file
+	public function update_quantities(){
+		if(isset($_POST['submit'])){
+			$filename = $_FILES['file']['tmp_name'];
+
+			if($_FILES['file']['size'] > 0){
+				$file = fopen($filename, 'r');
+
+				while(($getData = fgetcsv($file, 10000,',')) !== FALSE){
+					$this->assets_model->update_location_asset_quantity($getData[0], $getData[1], $getData[2]);
+				}
+				fclose($file);
+			}
+		}
+		redirect('assets');
+	}
+
+	function import_assets(){
+	    if(isset($_POST['submit'])){
+	        $filename = $_FILES['file']['tmp_name'];
+
+	        if($_FILES['file']['size'] > 0){
+	            $file = fopen($filename, 'r');
+
+	            while(($getData = fgetcsv($file, 10000, ',')) !== FALSE){
+	                $this->assets_model->import_assets($getData[0], $getData[1], $getData[2], $getData[3]);
+                }
+                fclose($file);
+            }
+        }
+    }
+
+	//function to export from the database
+	public function export(){
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename=data.csv');
+
+		$output = fopen('php://output', 'w');
+		fputcsv($output, array('ID', 'first name','last name'));
+
+		$results = $this->assets_model->get_data_from_database();
+		foreach($results as $result){
+			fputcsv($output, $result);
+		}
+		fclose($output);
+	}
+
+	public function update_prices(){
+		$locations = $this->assets_model->get_locations();
+		$assets = $this->assets_model->get_assets();
+
+		foreach($assets as $asset){
+			$this->assets_model->update_prices($asset->asset_code, $asset->unit_price);
+			redirect('assets');
+		}
+	}
+}
+
+/* End of file Assets.php */
+/* Location: ./application/controllers/Assets.php */

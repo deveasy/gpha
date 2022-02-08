@@ -1,0 +1,57 @@
+tr.transfer-hover{
+	cursor: pointer;
+}
+h4.amount{
+	font-weight: bold;
+}
+.buttons-row{
+	margin-bottom: 10px;
+}
+.buttons-dropdown{
+	width: 200px;
+	margin-right: 0;
+}
+.item{
+	display: block;
+	border: 5px solid #efefef;
+	float: left;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.new-item{
+	width: 100px;
+	display: block;
+	margin: 30px auto 0 auto;
+	border: 5px solid #efefef;
+	cursor: pointer;
+}
+.item a:hover{
+	text-decoration: none;
+}
+.item .item-heading, .new-item .item-heading{
+	display: block;
+	background-color: #e3c5f4;
+}
+.item .item-heading h1, .new-item .item-heading h1{
+	font-size: 4.5em;
+	text-align: center;
+	color: #fff;
+	margin: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.item-body{
+	background-color: #efefef;
+}
+.item-body p{
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	margin: 0;
+}
+#map{
+	height:100%;
+}
+.stock-receipt-input{
+	width: 250px;
+}
