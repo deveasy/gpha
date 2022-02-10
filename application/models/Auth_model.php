@@ -7,8 +7,8 @@ class Auth_model extends CI_Model{
 	}
 
 	function login($username, $password){
-		$this->db->select('firstname, lastname, staff_id, role_id, location_id');
-		$this->db->from('staff');
+		$this->db->select('firstname, lastname, staff_id, role_id, location');
+		$this->db->from('users');
 		$this->db->where('username',$username);
 		$this->db->where('password',md5($password));
 		$this->db->limit(1);
@@ -27,7 +27,7 @@ class Auth_model extends CI_Model{
 		$this->db->where('username', $username);
 		$this->db->where('password', $password);
 
-		$query = $this->db->get('staff');
+		$query = $this->db->get('users');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}

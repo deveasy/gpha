@@ -44,6 +44,37 @@ class Assets_model extends CI_Model{
 		return $this->db->count_all_results();
 	}
 
+	public function get_asset_type_name($asset_type_id){
+		$this->db->select('type_name');
+		$this->db->where('asset_type_id', $asset_type_id);
+
+		return $this->db->get('asset_types')->row();
+	}
+
+	public function get_faulty_assets(){
+		$this->db->where('status', 'faulty');
+		
+		return $this->db->get('assets')->result();
+	}
+
+	public function get_discarded_assets(){
+		$this->db->where('status', 'discarded');
+		
+		return $this->db->get('assets')->result();
+	}
+
+	public function get_unassigned_assets(){
+		$this->db->where('status', 'available');
+		
+		return $this->db->get('assets')->result();
+	}
+
+	public function get_assigned_assets(){
+		$this->db->where('status', 'assigned');
+		
+		return $this->db->get('assets')->result();
+	}
+
 	function get_location_assets($location_id){
 		$this->db->select('location_inventory.asset_code, asset_name, asset_category, location_inventory.unit_price');
 		$this->db->from('location_inventory');

@@ -45,3 +45,41 @@ $(function() {
         }
     }
 });
+
+
+//sets datatable functionalities to tables
+$(document).ready(function() {
+    $('#dataTables-example').DataTable({
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#faulty-table').DataTable({
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#assigned-table').DataTable({
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#unassigned-table').DataTable({
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#assets-table').DataTable({
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#discarded-table').DataTable({
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#all-table').DataTable({
+        responsive: true
+    });
+});

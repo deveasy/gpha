@@ -24,14 +24,15 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data['location_products'] = json_encode($this->chart_data_new('2017-08-30'));
-		//$data['best_sellers'] = $this->dashboard_model->best_selling_products('2017-08-30');
-		$data['total_orders'] = $this->dashboard_model->get_total_daily_sales_orders($this->today);
-		$data['new_location_orders'] = $this->dashboard_model->get_total_location_orders('S1')->order_total;
-		$data['old_location_orders'] = $this->dashboard_model->get_total_location_orders('S2')->order_total;
-		$data['new_location_products'] = $this->dashboard_model->get_total_products_for_location('S1')->quantity;
-		$data['old_location_products'] = $this->dashboard_model->get_total_products_for_location('S2')->quantity;
-		$data['total_products'] = $this->dashboard_model->get_total_daily_products($this->today);
+		$data = array();
+		// $data['location_products'] = json_encode($this->chart_data_new('2017-08-30'));
+		// $data['best_sellers'] = $this->dashboard_model->best_selling_products('2017-08-30');
+		// $data['total_orders'] = $this->dashboard_model->get_total_daily_sales_orders($this->today);
+		// $data['new_location_orders'] = $this->dashboard_model->get_total_location_orders('S1')->order_total;
+		// $data['old_location_orders'] = $this->dashboard_model->get_total_location_orders('S2')->order_total;
+		// $data['new_location_products'] = $this->dashboard_model->get_total_products_for_location('S1')->quantity;
+		// $data['old_location_products'] = $this->dashboard_model->get_total_products_for_location('S2')->quantity;
+		// $data['total_products'] = $this->dashboard_model->get_total_daily_products($this->today);
 
 		$this->load->view('dashboard/dashboard_view', $data);
 	}

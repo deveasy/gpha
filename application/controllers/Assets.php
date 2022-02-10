@@ -41,6 +41,12 @@ class Assets extends CI_Controller {
 
 	public function view_assets($asset_type_id){
 		$data['assets'] = $this->assets_model->get_assets($asset_type_id);
+		$data['type_name'] = $this->assets_model->get_asset_type_name($asset_type_id)->type_name;
+		$data['discarded_assets'] = $this->assets_model->get_discarded_assets();
+		$data['faulty_assets'] = $this->assets_model->get_discarded_assets();
+		$data['assigned_assets'] = $this->assets_model->get_discarded_assets();
+		$data['available_assets'] = $this->assets_model->get_discarded_assets();
+
 		$this->load->view('assets/view_assets', $data);
 	}
 
