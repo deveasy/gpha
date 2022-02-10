@@ -20,27 +20,42 @@
                         <div class="panel-body">
                             <div class="row">
                                 <?php echo validation_errors(); ?>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-4 col-md-4">
                                     <?php
                                         $attributes = array('role'=>'form');
                                         echo form_open_multipart('assets/add_asset'); 
                                     ?>
                                         <div class="form-group">
-                                            <label>Serial Number</label>
-                                            <input class="form-control" name="serial_number" placeholder="Serial Number" value="<?php echo set_value('serial_number'); ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Asset Name</label>
-                                            <input class="form-control" name="asset_name" placeholder="Enter Asset Name" value="<?php echo set_value('asset_name'); ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Asset Image</label>
-                                            <input type="file" name="asset_image">
-                                        </div>
-                                        <div class="form-group">
                                             <label>Category</label>
                                             <select class="form-control" name="asset_category">
-                                                <option value="">Select Category</option>
+                                                <option value="">----Select Category----</option>
+                                                <?php
+                                                    foreach($categories as $category){
+                                                        echo '<option value="'.$category->category_id.'">'.$category->category_name.'</option>';
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Wireless Mac Address</label>
+                                            <input class="form-control" name="wireless_mac" placeholder="Wireless Mac Address" value="<?php echo set_value('serial_number'); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hard Disk</label>
+                                            <input class="form-control" name="hard_disk" placeholder="Hard Disk" value="<?php echo set_value('asset_name'); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Network Hubs</label>
+                                            <input type="text" name="network_hub" class="form-control" placeholder="Network Hubs">
+                                        </div>
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+
+                                <div class="col-lg-4 col-md-4">
+                                        <div class="form-group">
+                                            <label>Select Brand</label>
+                                            <select class="form-control" name="brand">
+                                                <option value="">----Select Brand----</option>
                                                 <?php
                                                     foreach($categories as $category){
                                                         echo '<option value="'.$category->category_name.'">'.$category->category_name.'</option>';
@@ -48,10 +63,33 @@
                                                 ?>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Lan Mac Address</label>
+                                            <input class="form-control" name="lan_mac" placeholder="Lan Mac Address" value="<?php echo set_value('serial_number'); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Processor Speed</label>
+                                            <input class="form-control" name="processor" placeholder="Processor Speed" value="<?php echo set_value('asset_name'); ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Serial No.</label>
+                                            <input type="text" name="serial_number" class="form-control" placeholder="Serial Number">
+                                        </div>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
+                                <!-- /.col-lg-4 (nested) -->
 
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-4 col-md-4">
+                                        <div class="form-group">
+                                            <label>Select Model</label>
+                                            <select class="form-control" name="asset_category">
+                                                <option value="">----Select Model----</option>
+                                                <?php
+                                                    foreach($categories as $category){
+                                                        echo '<option value="'.$category->category_name.'">'.$category->category_name.'</option>';
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <label>Asset Description</label>
                                             <textarea class="form-control" rows="4" name="description"><?php echo set_value('description'); ?></textarea>
@@ -63,7 +101,7 @@
                                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
+                                <!-- /.col-lg-4 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>

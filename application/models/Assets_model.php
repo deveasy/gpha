@@ -75,6 +75,10 @@ class Assets_model extends CI_Model{
 		return $this->db->get('assets')->result();
 	}
 
+	public function get_categories(){
+		return $this->db->get('asset_categories')->result();
+	}
+
 	function get_location_assets($location_id){
 		$this->db->select('location_inventory.asset_code, asset_name, asset_category, location_inventory.unit_price');
 		$this->db->from('location_inventory');

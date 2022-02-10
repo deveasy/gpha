@@ -72,7 +72,7 @@ class Assets extends CI_Controller {
 	}
 
 	public function new_category(){
-		$data['categories'] = $this->assets_model->get_asset_categories();
+		$data['categories'] = $this->assets_model->get_categories();
 		$this->load->view('assets/add_asset_category', $data);
 	}
 
@@ -83,7 +83,7 @@ class Assets extends CI_Controller {
 	}
 
 	public function new_asset(){
-		$data['categories'] = $this->assets_model->get_asset_categories();
+		$data['categories'] = $this->assets_model->get_categories();
 		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('assets/add_asset', $data);
 	}

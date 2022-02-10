@@ -218,9 +218,9 @@
                                                     <th>Serial</th>
                                                     <th>Unit</th>
                                                     <th>Supplier</th>
-                                                    <th>Status</th>
                                                     <th>Waranty Date</th>
-                                                    <th>Years After Purchase</th>
+                                                    <th>Date Created</th>
+                                                    <th>Created by</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -231,10 +231,11 @@
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->brand ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
-                                                    <td><?php echo $asset->location_name ?></td>
-                                                    <td><?php echo $asset->supplier_name ?></td>
-                                                    <td><?php echo $asset->status ?></td>
+                                                    <td><?php echo $asset->location ?></td>
+                                                    <td><?php echo $asset->supplier ?></td>
                                                     <td><?php echo $asset->waranty_date ?></td>
+                                                    <td><?php echo $asset->date_created ?></td>
+                                                    <td><?php echo $asset->created_by ?></td>
                                                     <td><?php echo $asset->purchase_year ?></td>
                                                     <td>
                                                         <div class="dropdown">
