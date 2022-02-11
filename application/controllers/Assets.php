@@ -12,6 +12,14 @@ class Assets extends CI_Controller {
         }
 
 		$this->load->model('assets_model');
+		$this->load->database();
+	}
+
+	public function search(){
+		$term = $this->input->get('term');
+		$this->db->like('type_name', $term);
+		$data = $this->db->get('asset_types')->result();
+		echo json_encode($data);
 	}
 
 	public function index()
@@ -85,12 +93,13 @@ class Assets extends CI_Controller {
 	public function new_asset(){
 		$data['categories'] = $this->assets_model->get_categories();
 		$data['locations'] = $this->assets_model->get_locations();
+		$data['memory'] = 'memory';
 		$this->load->view('assets/add_asset', $data);
 	}
 
 	public function add_asset(){
 		$this->assets_model->add_asset();
-		$this->session->set_flashdata('asset_add','asset successfully added');
+		$this->session->set_flashdata('asset_add','Asset successfully added');
 		
 		//add the new asset to location inventory
 		$add_option = $this->input->post('add_option');

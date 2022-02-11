@@ -102,28 +102,23 @@ class Assets_model extends CI_Model{
 		$this->db->insert('asset_categories', $data);
 	}
 
-	public function get_latest_code(){
-		$this->db->select('asset_code');
-		$this->db->order_by('id','desc');
-		$this->db->limit(1);
-		$query = $this->db->get('assets');
-		if($query->num_rows() > 0){
-			return $query->row();
-		}
-		else{
-			return false;
-		}
-
-	}
-
 	public function add_asset(){
-		$asset_name = strtoupper($this->input->post('asset_name'));
 		$data = array(
-			'asset_code' => $this->input->post('asset_code'),
-			'asset_name' => $asset_name,
-			'asset_category' => strtoupper($this->input->post('asset_category')),
-			'unit_price' => $this->input->post('unit_price'),
-			'reorder_level' => $this->input->post('reorder_level')
+			'asset_code' => $this->input->post('asset_category'),
+			'asset_name' => $this->input->post('brand'),
+			'asset_category' => $this->input->post('model'),
+			'wireless_mac' => $this->input->post('wireless_mac'),
+			'lan_mac' => $this->input->post('lan_mac'),
+			'os' => $this->input->post('os'),
+			'hard_disk' => $this->input->post('hard_disk'),
+			'processor' => $this->input->post('processor'),
+			'memory' => $this->input->post('memory'),
+			'network_hub' => $this->input->post('network_hub'),
+			'serial_number' => $this->input->post('serial_number'),
+			'colour' => $this->input->post('colour'),
+			'warranty_date' => $this->input->post('warranty_date'),
+			'supplier' => $this->input->post('supplier'),
+			'purchase_date' => $this->input->post('purchase_date')
 		);
 		$this->db->insert('assets',$data);
 	}
@@ -179,11 +174,20 @@ class Assets_model extends CI_Model{
 
 	public function update_asset($id){
 		$data = array(
-			'asset_code' => $this->input->post('asset_code'),
-			'asset_name' => $this->input->post('asset_name'),
-			'asset_category' => $this->input->post('asset_category'),
-			'unit_price' => $this->input->post('unit_price'),
-			'reorder_level' => $this->input->post('reorder_level')
+			'asset_name' => $this->input->post('brand'),
+			'asset_category' => $this->input->post('model'),
+			'wireless_mac' => $this->input->post('wireless_mac'),
+			'lan_mac' => $this->input->post('lan_mac'),
+			'os' => $this->input->post('os'),
+			'hard_disk' => $this->input->post('hard_disk'),
+			'processor' => $this->input->post('processor'),
+			'memory' => $this->input->post('memory'),
+			'network_hub' => $this->input->post('network_hub'),
+			'serial_number' => $this->input->post('serial_number'),
+			'colour' => $this->input->post('colour'),
+			'warranty_date' => $this->input->post('warranty_date'),
+			'supplier' => $this->input->post('supplier'),
+			'purchase_date' => $this->input->post('purchase_date')
 		);
 		$this->db->where('asset_code',$id);
 		$this->db->update('assets',$data);

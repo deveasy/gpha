@@ -40,7 +40,3 @@ $(function() {
         }
     }
 });
-
-$(document).ready( function () {
-    $('#faulty-table').DataTable();
-} );
