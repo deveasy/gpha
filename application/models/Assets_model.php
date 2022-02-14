@@ -20,7 +20,8 @@ class Assets_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('assets');
 		$this->db->where('asset_type', $asset_type_id);
-		$this->db->join('suppliers','suppliers.supplier_id = assets.supplier_id');
+		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
+		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -102,23 +103,24 @@ class Assets_model extends CI_Model{
 		$this->db->insert('asset_categories', $data);
 	}
 
-	public function add_asset(){
+	public function add_asset($asset_type){
 		$data = array(
-			'asset_code' => $this->input->post('asset_category'),
-			'asset_name' => $this->input->post('brand'),
-			'asset_category' => $this->input->post('model'),
-			'wireless_mac' => $this->input->post('wireless_mac'),
-			'lan_mac' => $this->input->post('lan_mac'),
+			'asset_type' => $asset_type,
+			'brand' => $this->input->post('brand'),
+			'model' => $this->input->post('model'),
+			'wireless_mac' => $this->input->post('wirelessMac'),
+			'lan_mac' => $this->input->post('lanMac'),
 			'os' => $this->input->post('os'),
-			'hard_disk' => $this->input->post('hard_disk'),
+			'hard_disk' => $this->input->post('hardDisk'),
 			'processor' => $this->input->post('processor'),
 			'memory' => $this->input->post('memory'),
-			'network_hub' => $this->input->post('network_hub'),
-			'serial_number' => $this->input->post('serial_number'),
+			'network_hub' => $this->input->post('networkHub'),
+			'serial_number' => $this->input->post('serialNumber'),
 			'colour' => $this->input->post('colour'),
-			'warranty_date' => $this->input->post('warranty_date'),
-			'supplier' => $this->input->post('supplier'),
-			'purchase_date' => $this->input->post('purchase_date')
+			'warranty_date' => $this->input->post('warrantyDate'),
+			'supplier_id' => $this->input->post('supplier'),
+			'purchase_date' => $this->input->post('purchaseDate'),
+			'status' => 'available'
 		);
 		$this->db->insert('assets',$data);
 	}

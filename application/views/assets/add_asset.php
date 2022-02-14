@@ -22,35 +22,37 @@
                                 <?php echo validation_errors(); ?>
                                 <div class="col-lg-4 col-md-4">
                                     <?php
-                                        $attributes = array('role'=>'form');
-                                        echo form_open_multipart('assets/add_asset'); 
+                                        $attributes = array('id'=>'addAssetForm');
+                                        echo form_open_multipart('assets/add_asset/'.$asset_type, $attributes); 
                                     ?>
                                         <div class="form-group">
                                             <label>Category</label>
-                                            <select class="form-control" name="assetCategory" id="assetCategory">
+                                            <select class="form-control" name="assetCategory" id="assetCategory" required>
                                                 <option value="">----Select Category----</option>
                                                 <?php
-                                                    foreach($categories as $category){
-                                                        echo '<option value="'.$category->category_id.'">'.$category->category_name.'</option>';
+                                                    if(isset($categories)){
+                                                        foreach($categories as $category){
+                                                            echo '<option value="'.$category->category_id.'">'.$category->category_name.'</option>';
+                                                        }
                                                     }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Wireless Mac Address</label>
-                                            <input type="text" class="form-control" id="wirelessMac" name="wirelessMac" placeholder="Wireless Mac Address" value="<?php echo set_value('wireless_mac'); ?>">
+                                            <input type="text" class="form-control" id="wirelessMac" name="wirelessMac" placeholder="Wireless Mac Address" value="<?php echo set_value('wirelessMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Hard Disk</label>
-                                            <input type="text" class="form-control" id="hardDisk" name="hardDisk" placeholder="Hard Disk" value="<?php echo set_value('hard_disk'); ?>">
+                                            <input type="text" class="form-control" id="hardDisk" name="hardDisk" placeholder="Hard Disk" value="<?php echo set_value('hardDisk'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Network Hubs</label>
-                                            <input type="text" class="form-control" id="networkHub" name="networkHub" placeholder="Network Hubs" value="<?php echo set_value('network_hub'); ?>">
+                                            <input type="text" class="form-control" id="networkHub" name="networkHub" placeholder="Network Hubs" value="<?php echo set_value('networkHub'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Warranty Date</label>
-                                            <input type="date" class="form-control" id="warrantyDate" name="warrantyDate" value="<?php echo set_value('warranty_date'); ?>">
+                                            <input type="date" class="form-control" id="warrantyDate" name="warrantyDate" value="<?php echo set_value('warrantyDate'); ?>" required>
                                         </div>
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->
@@ -61,31 +63,35 @@
                                             <select class="form-control" id="brand" name="brand" disabled>
                                                 <option value="">----Select Brand----</option>
                                                 <?php
-                                                    foreach($brands as $brand){
-                                                        echo '<option value="'.$brand->brand_id.'">'.$brand->brand_name.'</option>';
+                                                    if(isset($brands)){
+                                                        foreach($brands as $brand){
+                                                            echo '<option value="'.$brand->brand_id.'">'.$brand->brand_name.'</option>';
+                                                        }
                                                     }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Lan Mac Address</label>
-                                            <input type="text" class="form-control" id="lanMac" name="lanMac" placeholder="Lan Mac Address" value="<?php echo set_value('lan_mac'); ?>">
+                                            <input type="text" class="form-control" id="lanMac" name="lanMac" placeholder="Lan Mac Address" value="<?php echo set_value('lanMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Processor Speed</label>
-                                            <input type="text" class="form-control" id="processor" name="processor" placeholder="Processor Speed" value="<?php echo set_value('processor'); ?>">
+                                            <input type="text" class="form-control" id="processor" name="processor" placeholder="Processor Speed" value="<?php echo set_value('processor'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Serial No.</label>
-                                            <input type="text" class="form-control" id="serialNumber" name="serialNumber" placeholder="Serial Number" value="<?php echo set_value('processor'); ?>">
+                                            <input type="text" class="form-control" id="serialNumber" name="serialNumber" placeholder="Serial Number" value="<?php echo set_value('serialNumber'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Select Supplier</label>
-                                            <select class="form-control" id="supplier" name="supplier">
+                                            <select class="form-control" id="supplier" name="supplier" required>
                                                 <option value="">----Select Supplier----</option>
                                                 <?php
-                                                    foreach($suppliers as $supplier){
-                                                        echo '<option value="'.$supplier->supplier_id.'">'.$supplier->supplier_name.'</option>';
+                                                    if(isset($suppliers)){
+                                                        foreach($suppliers as $supplier){
+                                                            echo '<option value="'.$supplier->supplier_id.'">'.$supplier->supplier_name.'</option>';
+                                                        }
                                                     }
                                                 ?>
                                             </select>
@@ -99,27 +105,29 @@
                                             <select class="form-control" id="model" name="model" disabled>
                                                 <option value="">----Select Model----</option>
                                                 <?php
-                                                    foreach($models as $model){
-                                                        echo '<option value="'.$model->model_id.'">'.$model->model_name.'</option>';
+                                                    if(isset($models)){
+                                                        foreach($models as $model){
+                                                            echo '<option value="'.$model->model_id.'">'.$model->model_name.'</option>';
+                                                        }
                                                     }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Operating System</label>
-                                            <input type="text" class="form-control" id="os" name="os" placeholder="Operating System" value="<?php echo set_value('os'); ?>">
+                                            <input type="text" class="form-control" id="os" name="os" placeholder="Operating System" value="<?php echo set_value('os'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Memory</label>
-                                            <input type="text" class="form-control" id="memory" name="memory" placeholder="Memory" value="<?php echo set_value('memory'); ?>">
+                                            <input type="text" class="form-control" id="memory" name="memory" placeholder="Memory" value="<?php echo set_value('memory'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Colour</label>
-                                            <input type="text" class="form-control" id="colour" name="colour" placeholder=Colour" value="<?php echo set_value('colour'); ?>">
+                                            <input type="text" class="form-control" id="colour" name="colour" placeholder=Colour" value="<?php echo set_value('colour'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Purchase Date</label>
-                                            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" value="<?php echo set_value('purchaseDate'); ?>">
+                                            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" value="<?php echo set_value('purchaseDate'); ?>" required>
                                         </div>
                                         <button class="btn btn-primary pull-right" id="addAsset" name="addAsset" type="submit">Submit</button>
                                     </form>

@@ -48,6 +48,7 @@ class Assets extends CI_Controller {
 	
 
 	public function view_assets($asset_type_id){
+		$data['asset_type'] = $asset_type_id;
 		$data['assets'] = $this->assets_model->get_assets($asset_type_id);
 		$data['type_name'] = $this->assets_model->get_asset_type_name($asset_type_id)->type_name;
 		$data['discarded_assets'] = $this->assets_model->get_discarded_assets();
@@ -56,6 +57,26 @@ class Assets extends CI_Controller {
 		$data['available_assets'] = $this->assets_model->get_discarded_assets();
 
 		$this->load->view('assets/view_assets', $data);
+	}
+
+	public function new_asset($asset_type){
+		$data['asset_type'] = $asset_type;
+		$data['categories'] = $this->assets_model->get_categories();
+		$data['locations'] = $this->assets_model->get_locations();
+		$this->load->view('assets/add_asset', $data);
+	}
+
+	public function add_asset($asset_type){
+		$this->assets_model->add_asset($asset_type);
+		$this->session->set_flashdata('asset_add','Asset successfully added');
+		
+		redirect('assets/view_assets/'.$asset_type);
+	}
+
+	public function edit_asset($id){
+		$data['asset'] = $this->assets_model->get_asset($id);
+		$data['locations'] = $this->assets_model->get_locations();
+		$this->load->view('edit_asset',$data);
 	}
 
 	public function location_assets(){
@@ -88,38 +109,6 @@ class Assets extends CI_Controller {
 		$this->assets_model->add_asset_category();
 
 		redirect('assets/new_category');
-	}
-
-	public function new_asset(){
-		$data['categories'] = $this->assets_model->get_categories();
-		$data['locations'] = $this->assets_model->get_locations();
-		$data['memory'] = 'memory';
-		$this->load->view('assets/add_asset', $data);
-	}
-
-	public function add_asset(){
-		$this->assets_model->add_asset();
-		$this->session->set_flashdata('asset_add','Asset successfully added');
-		
-		//add the new asset to location inventory
-		$add_option = $this->input->post('add_option');
-		if($add_option == 'all'){
-			$locations = $this->assets_model->get_locations();
-			foreach($locations as $location){
-				$this->assets_model->add_asset_to_location($location->location_id, 2000);
-			}
-		}
-		else{
-			$this->assets_model->add_asset_to_location($add_option, 2000);
-		}
-		
-		redirect('assets');
-	}
-
-	public function edit_asset($id){
-		$data['asset'] = $this->assets_model->get_asset($id);
-		$data['locations'] = $this->assets_model->get_locations();
-		$this->load->view('edit_asset',$data);
 	}
 
 	function edit_location_asset($asset_code, $location_id){

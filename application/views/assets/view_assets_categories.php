@@ -21,7 +21,6 @@
             <!-- buttons row -->
             <div class="row buttons-row">
                 <div class="col-lg-6">
-                    <a href="<?php echo base_url(); ?>index.php/assets/new_asset" class="btn btn-primary">+ Add Asset</a>
                     <a href="<?php echo base_url(); ?>index.php/assets/new_category" class="btn btn-primary">+ Add Category</a>
                 </div>
                 <div class="col-lg-6">

@@ -77,8 +77,9 @@ $(document).ready(function() {
         responsive: true
     });
 
-    $("#addAsset").click(function(){
-        alert("Hello world");
+    $("#addAssetForm").validate({
+        errorClass: "has-warning",
+        validClass: "has-success"
     });
 });
 
@@ -103,10 +104,12 @@ $(document).ready(function(){
         select: function (event, ui) {
             // Set selection
             $('#lanMac').val(ui.item.label); // display the selected text
-            $('#wireless_mac').val(ui.item.value); // save selected id to input
+            $('#wirelessMac').val(ui.item.value); // save selected id to input
             return false;
         }
     });
 });
 
+$(function(){
 
+})

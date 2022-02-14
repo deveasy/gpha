@@ -12,7 +12,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Assets</h1>
+                        <h1 class="page-header">Assets</h1> <h4>(<?php echo $type_name ?>)</h4>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -36,6 +36,10 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
+                                
+                                <a href="<?php echo base_url().'index.php/assets/new_asset/'.$asset_type; ?>" class="btn btn-primary pull-right">+ Add Asset</a>
+                                <p>&nbsp;</p>
+
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs">
                                     <li class="active">
@@ -62,7 +66,7 @@
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="assets-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Asset Category</th>
+                                                    <th>Asset Type</th>
                                                     <th>Brand</th>
                                                     <th>Serial</th>
                                                     <th>Unit</th>
@@ -77,18 +81,18 @@
                                                 <?php if(isset($assets) && !empty($assets)): ?>
                                                     <?php foreach($assets as $asset): ?>
                                                 <tr>
-                                                    <td><?php echo $asset->asset_category ?></td>
+                                                    <td><?php echo $asset->type_name ?></td>
                                                     <td><?php echo $asset->brand ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
-                                                    <td><?php echo $asset->location_name ?></td>
+                                                    <td><?php echo $asset->location ?></td>
                                                     <td><?php echo $asset->supplier_name ?></td>
                                                     <td><?php echo $asset->status ?></td>
-                                                    <td><?php echo $asset->waranty_date ?></td>
-                                                    <td><?php echo $asset->purchase_year ?></td>
+                                                    <td><?php echo $asset->warranty_date ?></td>
+                                                    <td><?php echo $asset->purchase_date ?></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="assetsDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Dropdown
+                                                                Action
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="assetsDropdownMenu">
@@ -135,7 +139,7 @@
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="unassignedDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Dropdown
+                                                                Action
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="unassignedDropdownMenu">
@@ -190,7 +194,7 @@
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="assignedDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Dropdown
+                                                                Action
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="assignedDropdownMenu">
@@ -240,7 +244,7 @@
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="faultyDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Dropdown
+                                                                Action
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="faultyDropdownMenu">
@@ -289,7 +293,7 @@
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="discardedDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Dropdown
+                                                                Action
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="discardedDropdownMenu">
