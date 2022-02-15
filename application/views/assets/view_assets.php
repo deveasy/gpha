@@ -132,10 +132,10 @@
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->brand ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
-                                                    <td><?php echo $asset->location_name ?></td>
+                                                    <td><?php echo $asset->location ?></td>
                                                     <td><?php echo $asset->supplier_name ?></td>
                                                     <td><?php echo $asset->status ?></td>
-                                                    <td><?php echo $asset->waranty_date ?></td>
+                                                    <td><?php echo $asset->warranty_date ?></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="unassignedDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -163,7 +163,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Asset Category</th>
-                                                    <th>Tag Name</th>
+                                                    <th>Computer Tag Name</th>
+                                                    <th>Asset Tag Name</th>
                                                     <th>Serial No.</th>
                                                     <th>Staff No.</th>
                                                     <th>Staff Name</th>
@@ -181,15 +182,16 @@
                                                     <?php foreach($assets as $asset): ?>
                                                 <tr>
                                                     <td><?php echo $asset->asset_category ?></td>
-                                                    <td><?php echo $asset->tag_name ?></td>
+                                                    <td><?php echo $asset->computer_tag_name ?></td>
+                                                    <td><?php echo $asset->asset_tag_name ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
                                                     <td><?php echo $asset->assigned_to ?></td>
-                                                    <td><?php echo $asset->location_name ?></td>
+                                                    <td><?php echo $asset->location ?></td>
                                                     <td><?php echo $asset->supplier_name ?></td>
                                                     <td><?php echo $asset->status ?></td>
                                                     <td><?php echo $asset->location ?></td>
                                                     <td><?php echo $asset->date_assigned ?></td>
-                                                    <td><?php echo $asset->waranty_date ?></td>
+                                                    <td><?php echo $asset->warranty_date ?></td>
                                                     <td><?php echo $asset->assigned_by ?></td>
                                                     <td>
                                                         <div class="dropdown">
@@ -236,11 +238,10 @@
                                                     <td><?php echo $asset->brand ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
                                                     <td><?php echo $asset->location ?></td>
-                                                    <td><?php echo $asset->supplier ?></td>
-                                                    <td><?php echo $asset->waranty_date ?></td>
+                                                    <td><?php echo $asset->supplier_name ?></td>
+                                                    <td><?php echo $asset->warranty_date ?></td>
                                                     <td><?php echo $asset->date_created ?></td>
                                                     <td><?php echo $asset->created_by ?></td>
-                                                    <td><?php echo $asset->purchase_year ?></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" id="faultyDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -272,10 +273,9 @@
                                                     <th>Serial</th>
                                                     <th>Unit</th>
                                                     <th>Supplier</th>
-                                                    <th>Status</th>
                                                     <th>Waranty Date</th>
-                                                    <th>Years After Purchase</th>
-                                                    <th>Actions</th>
+                                                    <th>Date Created</th>
+                                                    <th>Created by</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -285,25 +285,11 @@
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->brand ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
-                                                    <td><?php echo $asset->location_name ?></td>
+                                                    <td><?php echo $asset->location ?></td>
                                                     <td><?php echo $asset->supplier_name ?></td>
+                                                    <td><?php echo $asset->warranty_date ?></td>
                                                     <td><?php echo $asset->status ?></td>
-                                                    <td><?php echo $asset->waranty_date ?></td>
-                                                    <td><?php echo $asset->purchase_year ?></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-primary dropdown-toggle" type="button" id="discardedDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                Action
-                                                                <span class="caret"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu" aria-labelledby="discardedDropdownMenu">
-                                                                <li><a href="#">Edit</a></li>
-                                                                <li><a href="#">Release to Supplier</a></li>
-                                                                <li><a href="#">Delete</a></li>
-                                                                <li><a href="#">History</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
+                                                    <td><?php echo $asset->purchase_date ?></td>
                                                 </tr>
                                                     <?php endforeach ?>
                                                 <?php endif ?>
