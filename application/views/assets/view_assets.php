@@ -126,8 +126,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if(isset($assets) && !empty($assets)): ?>
-                                                    <?php foreach($assets as $asset): ?>
+                                                <?php if(isset($available_assets) && !empty($available_assets)): ?>
+                                                    <?php foreach($available_assets as $asset): ?>
                                                 <tr>
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->brand ?></td>
@@ -143,10 +143,7 @@
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="unassignedDropdownMenu">
-                                                                <li><a href="#">Edit</a></li>
-                                                                <li><a href="#">Release to Supplier</a></li>
-                                                                <li><a href="#">Delete</a></li>
-                                                                <li><a href="#">History</a></li>
+                                                                <li><a href="<?php echo base_url() . 'index.php/assets/assign_asset/'.$asset->asset_id; ?>">Assign</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -178,8 +175,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if(isset($assets) && !empty($assets)): ?>
-                                                    <?php foreach($assets as $asset): ?>
+                                                <?php if(isset($assigned_assets) && !empty($assigned_assets)): ?>
+                                                    <?php foreach($assigned_assets as $asset): ?>
                                                 <tr>
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->computer_tag_name ?></td>
@@ -231,8 +228,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if(isset($assets) && !empty($assets)): ?>
-                                                    <?php foreach($assets as $asset): ?>
+                                                <?php if(isset($faulty_assets) && !empty($faulty_assets)): ?>
+                                                    <?php foreach($faulty_assets as $asset): ?>
                                                 <tr>
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->brand ?></td>
@@ -279,8 +276,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if(isset($assets) && !empty($assets)): ?>
-                                                    <?php foreach($assets as $asset): ?>
+                                                <?php if(isset($discarded_assets) && !empty($discarded_assets)): ?>
+                                                    <?php foreach($discarded_assets as $asset): ?>
                                                 <tr>
                                                     <td><?php echo $asset->asset_category ?></td>
                                                     <td><?php echo $asset->brand ?></td>

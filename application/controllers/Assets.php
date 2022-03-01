@@ -52,9 +52,9 @@ class Assets extends CI_Controller {
 		$data['assets'] = $this->assets_model->get_assets($asset_type_id);
 		$data['type_name'] = $this->assets_model->get_asset_type_name($asset_type_id)->type_name;
 		$data['discarded_assets'] = $this->assets_model->get_discarded_assets();
-		$data['faulty_assets'] = $this->assets_model->get_discarded_assets();
-		$data['assigned_assets'] = $this->assets_model->get_discarded_assets();
-		$data['available_assets'] = $this->assets_model->get_discarded_assets();
+		$data['faulty_assets'] = $this->assets_model->get_faulty_assets();
+		$data['assigned_assets'] = $this->assets_model->get_assigned_assets();
+		$data['available_assets'] = $this->assets_model->get_available_assets();
 
 		$this->load->view('assets/view_assets', $data);
 	}
@@ -73,10 +73,26 @@ class Assets extends CI_Controller {
 		redirect('assets/view_assets/'.$asset_type);
 	}
 
-	public function edit_asset($id){
-		$data['asset'] = $this->assets_model->get_asset($id);
+	public function edit_asset($asset_id){
+		$data['asset'] = $this->assets_model->get_asset($asset_id);
 		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('edit_asset',$data);
+	}
+
+	public function assign_asset($asset_id){
+
+	}
+
+	public function delete_asset($asset_id){
+
+	}
+
+	public function asset_history($asset_id){
+
+	}
+
+	public function release_to_supplier($assetid){
+
 	}
 
 	public function location_assets(){

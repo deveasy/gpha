@@ -53,25 +53,36 @@ class Assets_model extends CI_Model{
 	}
 
 	public function get_faulty_assets(){
-		$this->db->where('status', 'faulty');
+		$this->db->where('assets.status', 'faulty');
+		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
+		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
+		$this->db->join('users', 'assets.assigned_by = users.staff_id');
 		
 		return $this->db->get('assets')->result();
 	}
 
 	public function get_discarded_assets(){
-		$this->db->where('status', 'discarded');
+		$this->db->where('assets.status', 'discarded');
+		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
+		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
+		$this->db->join('users', 'assets.assigned_by = users.staff_id');
 		
 		return $this->db->get('assets')->result();
 	}
 
-	public function get_unassigned_assets(){
-		$this->db->where('status', 'available');
+	public function get_available_assets(){
+		$this->db->where('assets.status', 'available');
+		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
+		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
 		
 		return $this->db->get('assets')->result();
 	}
 
 	public function get_assigned_assets(){
-		$this->db->where('status', 'assigned');
+		$this->db->where('assets.status', 'assigned');
+		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
+		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
+		$this->db->join('users', 'assets.assigned_by = users.staff_id');
 		
 		return $this->db->get('assets')->result();
 	}
@@ -123,6 +134,13 @@ class Assets_model extends CI_Model{
 			'status' => 'available'
 		);
 		$this->db->insert('assets',$data);
+	}
+
+	public function update_asset_status(){
+		$data = array(
+			'asset_id' => '',
+		);
+		$this->db->insert('status', $data);
 	}
 
 	public function add_asset_to_location($location_id, $quantity){
