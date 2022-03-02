@@ -53,11 +53,8 @@ class Consumables extends CI_Controller {
 		redirect('consumables/consumable_categories');
 	}
 
-	public function add_new_consumable(){
-		$data['consumable_code'] = $this->new_consumable_code();
-		$data['categories'] = $this->consumables_model->get_consumable_categories();
-		$data['locations'] = $this->consumables_model->get_locations();
-		$this->load->view('add_consumable', $data);
+	public function new_consumable(){
+		$this->load->view('consumables/add_consumable');
 	}
 
 	public function add_consumable(){
@@ -77,6 +74,10 @@ class Consumables extends CI_Controller {
 		}
 		
 		redirect('consumables');
+	}
+
+	public function assign(){
+		$this->load->view('consumables/assign_consumable');
 	}
 
 	private function new_consumable_code(){

@@ -38,6 +38,10 @@ class Tickets extends CI_Controller {
 
 		$this->load->view('assets/view_assets_categories', $data);
 	}
+
+	public function new(){
+		
+	}
 	
 
 	public function view_assets($asset_type_id){

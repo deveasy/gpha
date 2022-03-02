@@ -27,6 +27,12 @@ class Consumables_model extends CI_Model{
 		}
 	}
 
+	public function assign(){
+		$data = array(
+			
+		);
+	}
+
 	public function get_asset_categories(){
 		$query = $this->db->get('asset_categories');
 		if($query->num_rows() > 0){
