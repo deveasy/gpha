@@ -41,28 +41,28 @@
                             <a href="#"><i class="fa fa-paper-plane fa-fw"></i> Reports<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"> Asset</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/assets_report"> Asset</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Issues</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/issues_report"> Issues</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Consumables</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/consumables_report"> Consumables</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Asset Out of Warranty</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/assets_out_of_warranty"> Asset Out of Warranty</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Asset Over 5 Years</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/assets_over_five_years"> Asset Over 5 Years</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Asset Purchase Report</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/assets_purchase"> Asset Purchase Report</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Consumable Disposed</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/consumables_disposed"> Consumable Disposed</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Asset Discarded</a>
+                                    <a href="<?php echo base_url() ?>index.php/reports/assets_discarded"> Asset Discarded</a>
                                 </li>
                             </ul>
                         </li>

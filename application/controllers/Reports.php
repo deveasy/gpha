@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sales_orders extends CI_Controller {
+class Reports extends CI_Controller {
 
 	
 	public function __construct(){
@@ -25,10 +25,36 @@ class Sales_orders extends CI_Controller {
 		$this->load->view('sales_orders/view_sales_orders',$data);
 	}
 
-	function sales_order($order_id){
-		$data['order'] = $this->sales_orders_model->get_sales_order($order_id);
-		$data['order_details'] = $this->sales_orders_model->get_sales_order_details($order_id);
-		$this->load->view('sales_orders/view_sales_order', $data);
+	public function assets_report(){
+		$this->load->view('reports/assets_report');
+	}
+
+	public function issues_report(){
+		$this->load->view('reports/issues_report');
+	}
+
+	public function consumables_report(){
+		$this->load->view('reports/consumables_report');
+	}
+
+	public function assets_out_of_warranty(){
+		$this->load->view('reports/assets_out_of_warranty');
+	}
+
+	public function assets_over_five_years(){
+		$this->load->view('reports/assets_over_five_years');
+	}
+
+	public function assets_purchase(){
+		$this->load->view('reports/assets_purchase');
+	}
+
+	public function consumables_disposed(){
+		$this->load->view('reports/consumables_disposed');
+	}
+
+	public function assets_discarded(){
+		$this->load->view('reports/assets_discarded');
 	}
 
 	function new_sales_order(){
@@ -40,7 +66,6 @@ class Sales_orders extends CI_Controller {
 	}
 
 	function submit_order(){
-		$this->print_order();
 	}
 
 	function filter_by_date(){

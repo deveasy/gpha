@@ -5,8 +5,8 @@ class Assets_model extends CI_Model{
 
 	public function get_asset_categories(){
 		$this->db->select('*');
-		$this->db->from('asset_categories');
-		$this->db->join('asset_types','asset_types.asset_category = asset_categories.category_id','left');
+		$this->db->from('categories');
+		$this->db->join('asset_types','asset_types.asset_category = categories.category_id','left');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -88,7 +88,7 @@ class Assets_model extends CI_Model{
 	}
 
 	public function get_categories(){
-		return $this->db->get('asset_categories')->result();
+		return $this->db->get('categories')->result();
 	}
 
 	function get_location_assets($location_id){
@@ -111,7 +111,7 @@ class Assets_model extends CI_Model{
 			'category_name' => strtoupper($this->input->post('category_name')),
 			'category_description' => $this->input->post('category_description')
 		);
-		$this->db->insert('asset_categories', $data);
+		$this->db->insert('categories', $data);
 	}
 
 	public function add_asset($asset_type){

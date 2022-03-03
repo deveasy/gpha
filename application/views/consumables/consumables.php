@@ -63,7 +63,7 @@
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="consumables-table">
                                             <thead>
                                                 <tr>
-                                                    <th>consumable Category</th>
+                                                    <th>Consumable</th>
                                                     <th>Unit</th>
                                                     <th>Quantity</th>
                                                     <th>Date Created</th>
