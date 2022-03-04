@@ -21,7 +21,7 @@
             <!-- buttons row -->
             <div class="row buttons-row">
                 <div class="col-lg-6">
-                    <a href="#" class="btn btn-primary">+ Report a problem</a>
+                    <a href="<?php echo base_url() ?>index.php/tickets/new" class="btn btn-primary">+ Report a problem</a>
                 </div>
                 <div class="col-lg-6">
                     <?php

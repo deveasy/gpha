@@ -11,49 +11,23 @@ class Tickets extends CI_Controller {
             redirect('auth','refresh');
         }
 
-		$this->load->model('assets_model');
+		$this->load->model('tickets_model');
 		$this->load->database();
 	}
 
 	public function index()
 	{
-		$asset_count = array();
-		$available_count = array();
-
-		$assets = $this->assets_model->get_asset_categories();
-		$data['assets'] = $this->assets_model->get_asset_categories();
-
-		//get the total number of assets in a type
-		foreach($assets as $asset){
-			$asset_count[$asset->asset_type_id] = $this->assets_model->count_asset_type($asset->asset_type_id);
-		}
-
-		$data['asset_count'] = $asset_count;
-
-		//get the total number of available assets in a type
-		foreach($assets as $asset){
-			$available_count[$asset->asset_type_id] = $this->assets_model->count_available_assets($asset->asset_type_id);
-		}
-		$data['available_assets'] = $available_count;
-
-		$this->load->view('assets/view_assets_categories', $data);
+		$this->load->view('assets/view_assets_categories');
 	}
 
 	public function new(){
-		
+		$this->load->view('issues/new_ticket');
 	}
 	
 
-	public function view_assets($asset_type_id){
-		$data['asset_type'] = $asset_type_id;
-		$data['assets'] = $this->assets_model->get_assets($asset_type_id);
-		$data['type_name'] = $this->assets_model->get_asset_type_name($asset_type_id)->type_name;
-		$data['discarded_assets'] = $this->assets_model->get_discarded_assets();
-		$data['faulty_assets'] = $this->assets_model->get_faulty_assets();
-		$data['assigned_assets'] = $this->assets_model->get_assigned_assets();
-		$data['available_assets'] = $this->assets_model->get_available_assets();
-
-		$this->load->view('assets/view_assets', $data);
+	public function add_ticket(){
+		$this->tickets_model->add_ticket();
+		redirect('tickets');
 	}
 
 	public function new_asset($asset_type){
@@ -92,27 +66,6 @@ class Tickets extends CI_Controller {
 
 	}
 
-	public function location_assets(){
-		if($this->input->post('location') == 'all'){
-			redirect('assets');
-		}
-		else{
-			if($this->uri->segment(3)){
-				$location_id = $this->uri->segment(3);
-			}
-			else{
-				$location_id = $this->input->post('location');
-			}
-		}
-
-		$data['location_id'] = $location_id;
-		$data['location_name'] = $this->assets_model->get_location_name($location_id)->location_name;
-		$data['locations'] = $this->assets_model->get_locations();
-		$data['assets'] = $this->assets_model->get_location_assets($location_id);
-
-		$this->load->view('view_location_assets', $data);
-	}
-
 	public function new_category(){
 		$data['categories'] = $this->assets_model->get_categories();
 		$this->load->view('assets/add_asset_category', $data);
@@ -124,40 +77,6 @@ class Tickets extends CI_Controller {
 		redirect('assets/new_category');
 	}
 
-	function edit_location_asset($asset_code, $location_id){
-		$data['location_id'] = $location_id;
-		$data['asset'] = $this->assets_model->get_location_asset($asset_code, $location_id);
-		$this->load->view('edit_location_asset', $data);
-	}
-
-	public function update_asset($asset_code){
-		$update_option = $this->input->post('update_option');
-		
-		if(!empty($update_option)){
-			if($update_option == 'all'){
-				$this->assets_model->update_price($asset_code);
-				$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-				redirect('assets');
-			}
-			else{
-				$this->assets_model->update_location_price($asset_code, $update_option);
-				$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-				redirect('assets');
-			}
-		}
-		else{
-			$this->assets_model->update_asset($asset_code);
-			$this->assets_model->update_price($asset_code);
-			$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-			redirect('assets');
-		}
-	}
-
-	function update_location_asset($asset_code, $location_id){
-		$this->assets_model->update_location_price($asset_code, $location_id);
-		$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-		redirect('assets/location_assets/'.$location_id);
-	}
 
 	//update the quantities for each asset in location
 	//after taking of stock with csv file
@@ -205,16 +124,6 @@ class Tickets extends CI_Controller {
 			fputcsv($output, $result);
 		}
 		fclose($output);
-	}
-
-	public function update_prices(){
-		$locations = $this->assets_model->get_locations();
-		$assets = $this->assets_model->get_assets();
-
-		foreach($assets as $asset){
-			$this->assets_model->update_prices($asset->asset_code, $asset->unit_price);
-			redirect('assets');
-		}
 	}
 }
 

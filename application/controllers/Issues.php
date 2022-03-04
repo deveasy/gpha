@@ -9,15 +9,12 @@ class Issues extends CI_Controller {
             redirect('auth','refresh');
         }
 
-		$this->load->model('issues_model');
+		$this->load->model('tickets_model');
 	}
 
 	public function index()
 	{
-		$data['location_name'] = '';
-		$data['location_id'] = '';
-		$data['locations'] = $this->issues_model->get_locations();
-		$data['issues'] = $this->issues_model->get_issues();
+		$data['issues'] = $this->tickets_model->get_tickets();
 		$this->load->view('issues/issues',$data);
 	}
 
@@ -35,52 +32,52 @@ class Issues extends CI_Controller {
 		}
 
 		$data['location_id'] = $location_id;
-		$data['location_name'] = $this->issues_model->get_location_name($location_id)->location_name;
-		$data['locations'] = $this->issues_model->get_locations();
-		$data['issues'] = $this->issues_model->get_location_issues($location_id);
+		$data['location_name'] = $this->tickets_model->get_location_name($location_id)->location_name;
+		$data['locations'] = $this->tickets_model->get_locations();
+		$data['issues'] = $this->tickets_model->get_location_issues($location_id);
 
 		$this->load->view('view_location_issues', $data);
 	}
 
 	public function issues_categories(){
-		$data['categories'] = $this->issues_model->get_issues_categories();
+		$data['categories'] = $this->tickets_model->get_issues_categories();
 		$this->load->view('add_issues_category', $data);
 	}
 
 	public function add_category(){
-		$this->issues_model->add_issues_category();
+		$this->tickets_model->add_issues_category();
 
-		redirect('issues/issues_categories');
+		redirect('tickets/issues_categories');
 	}
 
 	public function add_new_issues(){
 		$data['issues_code'] = $this->new_issues_code();
-		$data['categories'] = $this->issues_model->get_issues_categories();
-		$data['locations'] = $this->issues_model->get_locations();
+		$data['categories'] = $this->tickets_model->get_issues_categories();
+		$data['locations'] = $this->tickets_model->get_locations();
 		$this->load->view('add_issues', $data);
 	}
 
 	public function add_issues(){
-		$this->issues_model->add_issues();
+		$this->tickets_model->add_issues();
 		$this->session->set_flashdata('issues_add','issues successfully added');
 		
 		//add the new issues to location inventory
 		$add_option = $this->input->post('add_option');
 		if($add_option == 'all'){
-			$locations = $this->issues_model->get_locations();
+			$locations = $this->tickets_model->get_locations();
 			foreach($locations as $location){
-				$this->issues_model->add_issues_to_location($location->location_id, 2000);
+				$this->tickets_model->add_issues_to_location($location->location_id, 2000);
 			}
 		}
 		else{
-			$this->issues_model->add_issues_to_location($add_option, 2000);
+			$this->tickets_model->add_issues_to_location($add_option, 2000);
 		}
 		
 		redirect('issues');
 	}
 
 	private function new_issues_code(){
-		$current_code = $this->issues_model->get_latest_code()->issues_code;
+		$current_code = $this->tickets_model->get_latest_code()->issues_code;
 		$str1 = substr($current_code, 0, 5);
 		$str2 = substr($current_code, 5);
 		$sum = $str2 + 1;
@@ -89,14 +86,14 @@ class Issues extends CI_Controller {
 	}
 
 	public function edit_issues($id){
-		$data['issues'] = $this->issues_model->get_issues($id);
-		$data['locations'] = $this->issues_model->get_locations();
+		$data['issues'] = $this->tickets_model->get_issues($id);
+		$data['locations'] = $this->tickets_model->get_locations();
 		$this->load->view('edit_issues',$data);
 	}
 
 	function edit_location_issues($issues_code, $location_id){
 		$data['location_id'] = $location_id;
-		$data['issues'] = $this->issues_model->get_location_issues($issues_code, $location_id);
+		$data['issues'] = $this->tickets_model->get_location_issues($issues_code, $location_id);
 		$this->load->view('edit_location_issues', $data);
 	}
 
@@ -105,26 +102,26 @@ class Issues extends CI_Controller {
 		
 		if(!empty($update_option)){
 			if($update_option == 'all'){
-				$this->issues_model->update_price($issues_code);
+				$this->tickets_model->update_price($issues_code);
 				$this->session->set_flashdata('issues_update','issues has been updated successfully.');
 				redirect('issues');
 			}
 			else{
-				$this->issues_model->update_location_price($issues_code, $update_option);
+				$this->tickets_model->update_location_price($issues_code, $update_option);
 				$this->session->set_flashdata('issues_update','issues has been updated successfully.');
 				redirect('issues');
 			}
 		}
 		else{
-			$this->issues_model->update_issues($issues_code);
-			$this->issues_model->update_price($issues_code);
+			$this->tickets_model->update_issues($issues_code);
+			$this->tickets_model->update_price($issues_code);
 			$this->session->set_flashdata('issues_update','issues has been updated successfully.');
 			redirect('issues');
 		}
 	}
 
 	function update_location_issues($issues_code, $location_id){
-		$this->issues_model->update_location_price($issues_code, $location_id);
+		$this->tickets_model->update_location_price($issues_code, $location_id);
 		$this->session->set_flashdata('issues_update','issues has been updated successfully.');
 		redirect('issues/location_issues/'.$location_id);
 	}
