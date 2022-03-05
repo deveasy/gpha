@@ -62,17 +62,14 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Staff</th>
-                                        <th>Equipment Type</th>
-                                        <th>Serial</th>
-                                        <th>Unit</th>
-                                        <th>Department</th>
-                                        <th>Problem Type</th>
-                                        <th>Problem Desc</th>
-                                        <th>Date Reported</th>
-                                        <th>Reported By</th>
-                                        <th>Assigned To</th>
-                                        <th>Actions</th>
+                                        <th>Asset Category</th>
+                                        <th>Consumable Category</th>
+                                        <th>Quantity</th>
+                                        <th>Quantity Approved</th>
+                                        <th>Request to</th>
+                                        <th>Requested by</th>
+                                        <th>Date request</th>
+                                        <th>status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,9 +85,6 @@
                                                 echo '<td>'./*$product->cost_price.*/'</td>';
                                                 echo '<td>'./*$product->cost_price.*/'</td>';
                                                 echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td><a href="'.base_url().'index.php/products/edit_product/'.$product->product_code.'"><i class="fa fa-edit fa-fw"></i> Edit</a></td>';
                                                 echo '</tr>';
                                             }
                                         }
