@@ -21,7 +21,7 @@
             <!-- buttons row -->
             <div class="row buttons-row">
                 <div class="col-lg-6">
-                    <a href="#" class="btn btn-primary">+ New Request</a>
+                    <a href="<?php echo base_url(); ?>index.php/requests/new" class="btn btn-primary">+ Send Request</a>
                 </div>
                 <div class="col-lg-6">
                     <?php
@@ -31,13 +31,10 @@
                         <div class="form-group">
                             <label>Select Location:</label>
                             <select class="form-control" name="shop" onchange="this.form.submit()">
-                                <option> - Select - </option>
-                                <option value="all">All Locations</option>
-                                <?php
-                                    foreach ($shops as $shop) {
-                                        echo '<option value="'.$shop->shop_id.'">'.$shop->shop_name.'</option>';
-                                    }
-                                ?>
+                                <option> --- Select Unit --- </option>
+                                <option>Tema</option>
+                                <option>Head Quarters</option>
+                                <option>Revenue Centre</option>
                             </select>
                         </div>
                     </form>
