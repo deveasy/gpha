@@ -51,7 +51,7 @@ class Tickets extends CI_Controller {
 	}
 
 	public function assign_asset($asset_id){
-
+		
 	}
 
 	public function delete_asset($asset_id){

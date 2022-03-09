@@ -143,7 +143,7 @@
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="unassignedDropdownMenu">
-                                                                <li><a href="<?php echo base_url() . 'index.php/assets/assign_asset/'.$asset->asset_id; ?>">Assign</a></li>
+                                                                <li><a href="<?php echo base_url() . 'index.php/assets/assign/'.$asset_type.'/'.$asset->asset_id ?>">Assign</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>

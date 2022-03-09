@@ -213,31 +213,6 @@ class Assets_model extends CI_Model{
 		$this->db->update('assets',$data);
 	}
 
-	public function update_price($asset_code){
-		$data = array(
-			'unit_price' => $this->input->post('unit_price')
-		);
-		$this->db->where('asset_code',$asset_code);
-		$this->db->update('location_inventory',$data);
-	}
-
-	public function update_prices($asset_code, $unit_price){
-		$data = array(
-			'unit_price' => $unit_price
-		);
-		$this->db->where('asset_code',$asset_code);
-		$this->db->update('location_inventory',$data);
-	}
-
-	public function update_location_price($asset_code, $location_id){
-		$data = array(
-			'unit_price' => $this->input->post('unit_price')
-		);
-		$this->db->where('asset_code',$asset_code);
-		$this->db->where('location_id', $location_id);
-		$this->db->update('location_inventory',$data);
-	}
-
 	public function get_locations(){
 		$query = $this->db->get('locations');
 		if($query->num_rows() > 1){
@@ -248,25 +223,26 @@ class Assets_model extends CI_Model{
 		}
 	}
 
-	function get_location_name($location_id){
-		$this->db->select('location_name');
-		$this->db->where('location_id', $location_id);
-
-		$query = $this->db->get('location');
+	public function get_users(){
+		$query = $this->db->get('users');
 		if($query->num_rows() > 0){
-			return $query->row();
+			return $query->result();
 		}
 		else{
 			return false;
 		}
 	}
 
-	function add_unit_of_measure(){
+	public function assign_asset($asset_id){
 		$data = array(
-			'short_description' => $this->input->post('short_description'),
-			'description' => $this->input->post('description')
+			'asset_id' => $asset_id,
+			'staff_id' => $this->input->post('staff'),
+			'computer_tag' => $this->input->post('computer_tag'),
+			'asset_tag' => $this->input->post('asset_tag'),
+			'barcode' => $this->input->post('barcode'),
+			'date_assigned' => $this->input->post('date'),
+			'location' => $this->input->post('location'),
 		);
-
-		$this->db->insert('units_of_measure');
+		$this->db->insert('user_asset', $data);
 	}
 }

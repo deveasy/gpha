@@ -76,23 +76,33 @@ class Assets extends CI_Controller {
 	public function edit_asset($asset_id){
 		$data['asset'] = $this->assets_model->get_asset($asset_id);
 		$data['locations'] = $this->assets_model->get_locations();
-		$this->load->view('edit_asset',$data);
+		$this->load->view('assets/edit_asset',$data);
 	}
 
-	public function assign_asset($asset_id){
+	public function assign($asset_type, $asset_id){
+		$data['asset_type'] = $asset_type;
+		$data['users'] = $this->assets_model->get_users();
+		$data['asset_id'] = $asset_id;
+		$this->load->view('assets/assign_asset', $data);
+	}
 
+	public function assign_asset($asset_type, $asset_id){
+		$this->assets_model->assign_asset($asset_id);
+		redirect('assets/view_assets/'.$asset_type);
 	}
 
 	public function delete_asset($asset_id){
-
+		$this->db->where('asset_id', $asset_id);
+		$this->db->delete('assets');
 	}
 
 	public function asset_history($asset_id){
 
 	}
 
-	public function release_to_supplier($assetid){
-
+	public function release_to_supplier($asset_id){
+		$this->db->where('asset_id', $asset_id);
+		$this->db->delete('assets');
 	}
 
 	public function location_assets(){
