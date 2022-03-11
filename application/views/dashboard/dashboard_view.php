@@ -96,26 +96,39 @@
                     <!-- updates panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> GPHA Updates
+                            <i class="fa fa-clock-o fa-fw"></i> <strong>GPHA News &amp; Updates</strong>
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="index.php/dashboard/new_post">New Post</a>
+                                        </li>
+                                        <li><a href="#">Another data</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Another link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <?php if(isset($updates) && !empty($updates)): ?>
-                            <?php foreach($updates as $update): ?>
+                            <?php if(isset($posts) && !empty($posts)): ?>
+                            <?php foreach($posts as $post): ?>
                             <div class="well">
-                                <h3><a href="#"><?php echo $update->title ?></a></h3>
+                                <h3><a href="index.php/dashboard/post/<?php echo $post->post_id ?>"><?php echo $post->title ?></a></h3>
                                 <p><small>By Human Resource &bull; 7 minutes ago</small></p>
-                                <p><?php echo $update->body ?></p>
-                                <p><a href="#">Read more...</a></p>
+                                <p><?php echo $post->content ?></p>
+                                <p><a href="index.php/dashboard/post/<?php echo $post->post_id ?>">Read more...</a></p>
                             </div>
                             <?php endforeach; ?>
                             <?php endif; ?>
-                            <div class="well">
-                                <h3><a href="#">News Update 2</a></h3>
-                                <p><small>By Human Resource &bull; 7 minutes ago</small></p>
-                                <p>Daily or weekly updates that are shared on the website will be updated here for all to see. This will provide an opportunity for information to be shared to everyone organisation wide.</p>
-                                <p><a href="#">Read more...</a></p>
-                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -152,50 +165,6 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-map-marker fa-fw"></i> Locations
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <h1>Google Map</h1>
-                                </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <h1>Geographical map here</h1>
-                                    <div id="map"></div>
-
-                                    
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-8 -->
                 
@@ -203,7 +172,7 @@
                     <!-- chat panel -->
                     <div class="chat-panel panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-comments fa-fw"></i> Tech Support
+                            <i class="fa fa-comments fa-fw"></i> <strong>Tech Support</strong>
                             <div class="btn-group pull-right">
                                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-chevron-down"></i>

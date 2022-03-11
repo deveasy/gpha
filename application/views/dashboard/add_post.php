@@ -28,7 +28,7 @@
                 <div class="col-lg-5 col-md-5">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Add New Category
+                            Add New Post
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -36,15 +36,15 @@
                                 <div class="col-lg-12 col-md-12">
                                     <?php
                                         $attributes = array('role'=>'form');
-                                        echo form_open('dashboard/add_update'); 
+                                        echo form_open('dashboard/add_post'); 
                                     ?>
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <input class="form-control" name="title" placeholder="Enter Title" value="">
+                                            <input class="form-control" name="title" placeholder="Enter Title" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Body</label>
-                                            <textarea id="editor" name="body"><?php echo set_value('body'); ?></textarea>
+                                            <textarea id="editor" name="content"><?php echo set_value('content'); ?></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                     </form>
@@ -62,22 +62,19 @@
                 <div class="col-lg-7 col-md-7">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Recent Updates
+                            Recent Posts
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <?php
-                                        if(!empty($categories)){
-                                            foreach($categories as $category){
-                                                echo '<tr>';
-                                                    echo '<td><p><strong>'.$category->category_name.'</strong></p></td>';
-                                                echo '</tr>';
-                                            }
-                                        }
-                                    ?>
-                                </table>
+                            <?php if(isset($posts) && !empty($posts)): ?>
+                            <?php foreach($posts as $post): ?>
+                            <div class="well">
+                                <h3><a href="#"><?php echo $post->title ?></a></h3>
+                                <p><small>By Human Resource &bull; 7 minutes ago</small></p>
+                                <p><?php echo $post->content ?></p>
+                                <p><a href="#">Read more...</a></p>
                             </div>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

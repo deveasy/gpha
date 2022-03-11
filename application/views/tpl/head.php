@@ -45,7 +45,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- TinyMCE Text editor -->
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/dsifw6zqce32alim6c62a9vi8vu6bctu4ow1ta905rsh48n1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
     tinymce.init({

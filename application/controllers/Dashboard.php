@@ -24,7 +24,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data['updates'] = $this->dashboard_model->get_updates();
+		$data['posts'] = $this->dashboard_model->get_posts();
 		$this->load->view('dashboard/dashboard_view', $data);
 	}
 
@@ -33,6 +33,24 @@ class Dashboard extends CI_Controller {
 		echo '1 week ago: ' . $this->one_week_ago . '<br>';
 		echo '30 days: ' . $this->thirty_days_ago . '<br>';
 		echo 'beginning of year' . $this->from_year_beginning . '<br>';
+	}
+
+	public function new_post(){
+		$data['posts'] = $this->dashboard_model->get_posts();
+		$this->load->view('dashboard/add_post', $data);
+	}
+
+	public function add_post(){
+		$this->dashboard_model->add_post();
+		$this->session->set_flashdata('news_update','Update successfully addded.');
+
+		redirect('dashboard/new_post');
+	}
+
+	public function post($post_id){
+		$data['posts'] = $this->dashboard_model->get_posts();
+		$data['post_details'] = $this->dashboard_model->get_post($post_id);
+		$this->load->view('dashboard/view_post', $data);
 	}
 
 	public function chart_data(){
@@ -50,17 +68,6 @@ class Dashboard extends CI_Controller {
 			}
 		}
 		return $chart_data;
-	}
-
-	public function new_update(){
-		$this->load->view('dashboard/add_update');
-	}
-
-	public function add_update(){
-		$this->dashboard_model->add_update();
-		$this->session->set_flashdata('news_update','Update successfully addded.');
-
-		redirect('dashboard/new_update');
 	}
 }
 
