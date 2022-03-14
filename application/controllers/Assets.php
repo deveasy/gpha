@@ -73,10 +73,10 @@ class Assets extends CI_Controller {
 		redirect('assets/view_assets/'.$asset_type);
 	}
 
-	public function edit_asset($asset_id){
+	public function edit($asset_id){
 		$data['asset'] = $this->assets_model->get_asset($asset_id);
 		$data['locations'] = $this->assets_model->get_locations();
-		$this->load->view('assets/edit_asset',$data);
+		$this->load->view('assets/edit_asset', $data);
 	}
 
 	public function assign($asset_type, $asset_id){

@@ -156,7 +156,8 @@ class Assets_model extends CI_Model{
 	public function get_asset($id){
 		$this->db->select('*');
 		$this->db->from('assets');
-		$this->db->where('asset_code',$id);
+		$this->db->where('asset_id',$id);
+		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
 
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
