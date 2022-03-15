@@ -73,10 +73,19 @@ class Assets extends CI_Controller {
 		redirect('assets/view_assets/'.$asset_type);
 	}
 
-	public function edit($asset_id){
+	public function edit($asset_id, $asset_type){
+		$data['asset_id'] = $asset_id;
+		$data['asset_type'] = $asset_type;
 		$data['asset'] = $this->assets_model->get_asset($asset_id);
+		$data['categories'] = $this->assets_model->get_categories();
 		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('assets/edit_asset', $data);
+	}
+
+	public function update_asset($asset_id, $asset_type){
+		$this->assets_model->update_asset($asset_id);
+		$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
+		redirect('assets/view_asses/' . $asset_type);
 	}
 
 	public function assign($asset_type, $asset_id){
@@ -141,29 +150,6 @@ class Assets extends CI_Controller {
 		$data['location_id'] = $location_id;
 		$data['asset'] = $this->assets_model->get_location_asset($asset_code, $location_id);
 		$this->load->view('edit_location_asset', $data);
-	}
-
-	public function update_asset($asset_code){
-		$update_option = $this->input->post('update_option');
-		
-		if(!empty($update_option)){
-			if($update_option == 'all'){
-				$this->assets_model->update_price($asset_code);
-				$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-				redirect('assets');
-			}
-			else{
-				$this->assets_model->update_location_price($asset_code, $update_option);
-				$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-				redirect('assets');
-			}
-		}
-		else{
-			$this->assets_model->update_asset($asset_code);
-			$this->assets_model->update_price($asset_code);
-			$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-			redirect('assets');
-		}
 	}
 
 	function update_location_asset($asset_code, $location_id){

@@ -23,7 +23,7 @@
                                 <div class="col-lg-4 col-md-4">
                                     <?php
                                         $attributes = array('id'=>'addAssetForm');
-                                        echo form_open_multipart('assets/add_asset/'.$asset_type, $attributes); 
+                                        echo form_open_multipart('assets/update_asset/'.$asset_id.'/'.$asset_type, $attributes); 
                                     ?>
                                         <div class="form-group">
                                             <label>Category</label>
@@ -40,19 +40,19 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Wireless Mac Address</label>
-                                            <input type="text" class="form-control" id="wirelessMac" name="wirelessMac" placeholder="Wireless Mac Address" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="wirelessMac" name="wirelessMac" placeholder="Wireless Mac Address" value="<?php echo set_value('wirelessMac', $asset->wireless_mac); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Hard Disk</label>
-                                            <input type="text" class="form-control" id="hardDisk" name="hardDisk" placeholder="Hard Disk" value="<?php echo set_value('hardDisk'); ?>" required>
+                                            <input type="text" class="form-control" id="hardDisk" name="hardDisk" placeholder="Hard Disk" value="<?php echo set_value('hardDisk', $asset->hard_disk); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Network Hubs</label>
-                                            <input type="text" class="form-control" id="networkHub" name="networkHub" placeholder="Network Hubs" value="<?php echo set_value('networkHub'); ?>">
+                                            <input type="text" class="form-control" id="networkHub" name="networkHub" placeholder="Network Hubs" value="<?php echo set_value('networkHub', $asset->network_hub); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Warranty Date</label>
-                                            <input type="date" class="form-control" id="warrantyDate" name="warrantyDate" value="<?php echo set_value('warrantyDate'); ?>" required>
+                                            <input type="date" class="form-control" id="warrantyDate" name="warrantyDate" value="<?php echo set_value('warrantyDate', $asset->warranty_date); ?>" required>
                                         </div>
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->
@@ -73,15 +73,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Lan Mac Address</label>
-                                            <input type="text" class="form-control" id="lanMac" name="lanMac" placeholder="Lan Mac Address" value="<?php echo set_value('lanMac'); ?>" required>
+                                            <input type="text" class="form-control" id="lanMac" name="lanMac" placeholder="Lan Mac Address" value="<?php echo set_value('lanMac', $asset->lan_mac); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Processor Speed</label>
-                                            <input type="text" class="form-control" id="processor" name="processor" placeholder="Processor Speed" value="<?php echo set_value('processor'); ?>" required>
+                                            <input type="text" class="form-control" id="processor" name="processor" placeholder="Processor Speed" value="<?php echo set_value('processor', $asset->processor); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Serial No.</label>
-                                            <input type="text" class="form-control" id="serialNumber" name="serialNumber" placeholder="Serial Number" value="<?php echo set_value('serialNumber'); ?>" required>
+                                            <input type="text" class="form-control" id="serialNumber" name="serialNumber" placeholder="Serial Number" value="<?php echo set_value('serialNumber', $asset->serial_number); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Select Supplier</label>
@@ -115,21 +115,21 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Operating System</label>
-                                            <input type="text" class="form-control" id="os" name="os" placeholder="Operating System" value="<?php echo set_value('os'); ?>" required>
+                                            <input type="text" class="form-control" id="os" name="os" placeholder="Operating System" value="<?php echo set_value('os', $asset->os); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Memory</label>
-                                            <input type="text" class="form-control" id="memory" name="memory" placeholder="Memory" value="<?php echo set_value('memory'); ?>" required>
+                                            <input type="text" class="form-control" id="memory" name="memory" placeholder="Memory" value="<?php echo set_value('memory', $asset->memory); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Colour</label>
-                                            <input type="text" class="form-control" id="colour" name="colour" placeholder=Colour" value="<?php echo set_value('colour'); ?>" required>
+                                            <input type="text" class="form-control" id="colour" name="colour" placeholder=Colour" value="<?php echo set_value('colour', $asset->colour); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Purchase Date</label>
-                                            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" value="<?php echo set_value('purchaseDate'); ?>" required>
+                                            <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" value="<?php echo set_value('purchaseDate', $asset->purchase_date); ?>" required>
                                         </div>
-                                        <button class="btn btn-primary pull-right" id="addAsset" name="addAsset" type="submit">Submit</button>
+                                        <button class="btn btn-primary pull-right" id="addAsset" name="addAsset" type="submit">Update</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->

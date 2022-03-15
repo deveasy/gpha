@@ -96,7 +96,7 @@
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="assetsDropdownMenu">
-                                                                <li><a href="<?php echo base_url() ?>index.php/assets/edit/<?php echo $asset->asset_id ?>">Edit</a></li>
+                                                                <li><a href="<?php echo base_url() ?>index.php/assets/edit/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Edit</a></li>
                                                                 <li><a href="#">Release to Supplier</a></li>
                                                                 <li><a href="#">Delete</a></li>
                                                                 <li><a href="#">History</a></li>

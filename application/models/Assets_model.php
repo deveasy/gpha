@@ -158,6 +158,7 @@ class Assets_model extends CI_Model{
 		$this->db->from('assets');
 		$this->db->where('asset_id',$id);
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
+		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
 
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
@@ -210,7 +211,7 @@ class Assets_model extends CI_Model{
 			'supplier' => $this->input->post('supplier'),
 			'purchase_date' => $this->input->post('purchase_date')
 		);
-		$this->db->where('asset_code',$id);
+		$this->db->where('asset_id',$id);
 		$this->db->update('assets',$data);
 	}
 
