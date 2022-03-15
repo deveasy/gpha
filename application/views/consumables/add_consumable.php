@@ -26,7 +26,7 @@
                                         echo form_open_multipart('consumables/add_consumable/', $attributes); 
                                     ?>
                                         <div class="form-group">
-                                            <label>Category</label>
+                                            <label>Select Consumable</label>
                                             <select class="form-control" name="consumable" id="consumable" required>
                                                 <option value="">----Select Category----</option>
                                                 <?php
@@ -39,13 +39,13 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Quantity</label>
+                                            <label>Enter Quantity</label>
                                             <input type="text" class="form-control" id="quantiity" name="quantiity" placeholder="Enter Quantity" value="<?php echo set_value('wirelessMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Supplier</label>
                                             <select class="form-control" name="supplier" id="supplier" required>
-                                                <option value="">----Select Category----</option>
+                                                <option value="">----Select Supplier----</option>
                                                 <?php
                                                     if(isset($categories)){
                                                         foreach($categories as $category){
