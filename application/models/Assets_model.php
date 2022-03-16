@@ -31,6 +31,10 @@ class Assets_model extends CI_Model{
 		}
 	}
 
+	public function get_asset_types(){
+		return $this->db->get('asset_types')->result();
+	}
+
 	public function count_asset_type($asset_type_id){
 		$this->db->where('asset_type', $asset_type_id);
 		$this->db->from('assets');
@@ -194,22 +198,23 @@ class Assets_model extends CI_Model{
 		$this->db->update('location_inventory', $data);
 	}
 
-	public function update_asset($id){
+	public function update_asset($id, $asset_type){
 		$data = array(
-			'asset_name' => $this->input->post('brand'),
-			'asset_category' => $this->input->post('model'),
-			'wireless_mac' => $this->input->post('wireless_mac'),
-			'lan_mac' => $this->input->post('lan_mac'),
+			'asset_type' => $asset_type,
+			'brand' => $this->input->post('brand'),
+			'model' => $this->input->post('model'),
+			'wireless_mac' => $this->input->post('wirelessMac'),
+			'lan_mac' => $this->input->post('lanMac'),
 			'os' => $this->input->post('os'),
-			'hard_disk' => $this->input->post('hard_disk'),
+			'hard_disk' => $this->input->post('hardDisk'),
 			'processor' => $this->input->post('processor'),
 			'memory' => $this->input->post('memory'),
-			'network_hub' => $this->input->post('network_hub'),
-			'serial_number' => $this->input->post('serial_number'),
+			'network_hub' => $this->input->post('networkHub'),
+			'serial_number' => $this->input->post('serialNumber'),
 			'colour' => $this->input->post('colour'),
-			'warranty_date' => $this->input->post('warranty_date'),
-			'supplier' => $this->input->post('supplier'),
-			'purchase_date' => $this->input->post('purchase_date')
+			'warranty_date' => $this->input->post('warrantyDate'),
+			'supplier_id' => $this->input->post('supplier'),
+			'purchase_date' => $this->input->post('purchaseDate')
 		);
 		$this->db->where('asset_id',$id);
 		$this->db->update('assets',$data);

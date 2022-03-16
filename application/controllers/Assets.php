@@ -61,7 +61,7 @@ class Assets extends CI_Controller {
 
 	public function new_asset($asset_type){
 		$data['asset_type'] = $asset_type;
-		$data['categories'] = $this->assets_model->get_categories();
+		$data['categories'] = $this->assets_model->get_asset_types();
 		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('assets/add_asset', $data);
 	}
@@ -77,7 +77,7 @@ class Assets extends CI_Controller {
 		$data['asset_id'] = $asset_id;
 		$data['asset_type'] = $asset_type;
 		$data['asset'] = $this->assets_model->get_asset($asset_id);
-		$data['categories'] = $this->assets_model->get_categories();
+		$data['categories'] = $this->assets_model->get_asset_types();
 		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('assets/edit_asset', $data);
 	}
@@ -85,7 +85,7 @@ class Assets extends CI_Controller {
 	public function update_asset($asset_id, $asset_type){
 		$this->assets_model->update_asset($asset_id);
 		$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
-		redirect('assets/view_asses/' . $asset_type);
+		redirect('assets/view_assets/' . $asset_type);
 	}
 
 	public function assign($asset_type, $asset_id){

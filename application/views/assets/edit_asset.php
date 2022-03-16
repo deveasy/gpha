@@ -29,13 +29,11 @@
                                             <label>Category</label>
                                             <select class="form-control" name="assetCategory" id="assetCategory" required>
                                                 <option value="">----Select Category----</option>
-                                                <?php
-                                                    if(isset($categories)){
-                                                        foreach($categories as $category){
-                                                            echo '<option value="'.$category->category_id.'">'.$category->category_name.'</option>';
-                                                        }
-                                                    }
-                                                ?>
+                                                    <?php if(isset($categories)): ?>
+                                                        <?php foreach($categories as $category): ?>
+                                                            <option value="<?php echo $category->asset_type_id ?>"<?php echo (($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)); ?> ><?php echo $category->type_name ?></option>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -65,7 +63,7 @@
                                                 <?php
                                                     if(isset($brands)){
                                                         foreach($brands as $brand){
-                                                            echo '<option value="'.$brand->brand_id.'">'.$brand->brand_name.'</option>';
+                                                            echo '<option value="'.$brand->brand_id.'" '.(($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)).'>'.$brand->brand_name.'</option>';
                                                         }
                                                     }
                                                 ?>
@@ -90,7 +88,7 @@
                                                 <?php
                                                     if(isset($suppliers)){
                                                         foreach($suppliers as $supplier){
-                                                            echo '<option value="'.$supplier->supplier_id.'">'.$supplier->supplier_name.'</option>';
+                                                            echo '<option value="'.$supplier->supplier_id.'" '.(($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)).'>'.$supplier->supplier_name.'</option>';
                                                         }
                                                     }
                                                 ?>
@@ -107,7 +105,7 @@
                                                 <?php
                                                     if(isset($models)){
                                                         foreach($models as $model){
-                                                            echo '<option value="'.$model->model_id.'">'.$model->model_name.'</option>';
+                                                            echo '<option value="'.$model->model_id.'" '.(($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)).'>'.$model->model_name.'</option>';
                                                         }
                                                     }
                                                 ?>
