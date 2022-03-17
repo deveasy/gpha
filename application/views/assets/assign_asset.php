@@ -40,15 +40,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Computer Tag Name</label>
-                                            <input type="text" class="form-control" id="asset_tag" name="asset_tag" placeholder="Enter Quantity" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="computer_tag" name="computer_tag" placeholder="Enter Computer Tag Name" value="<?php echo set_value('wirelessMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Asset Tag Name</label>
-                                            <input type="text" class="form-control" id="computer_tag" name="computer_tag" placeholder="Enter Quantity" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="asset_tag" name="asset_tag" placeholder="Enter Asset Tag Name" value="<?php echo set_value('wirelessMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Asset Barcode</label>
-                                            <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter Quantity" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter Barcode" value="<?php echo set_value('wirelessMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Date</label>
@@ -59,9 +59,9 @@
                                             <select class="form-control" name="location" id="location" required>
                                                 <option value="">---- Select Location ----</option>
                                                 <?php
-                                                    if(isset($categories)){
-                                                        foreach($categories as $category){
-                                                            echo '<option value="'.$category->category_id.'">'.$category->category_name.'</option>';
+                                                    if(isset($locations)){
+                                                        foreach($locations as $location){
+                                                            echo '<option value="'.$location->location_id.'">'.$location->location_name.'</option>';
                                                         }
                                                     }
                                                 ?>

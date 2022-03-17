@@ -97,9 +97,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="assetsDropdownMenu">
                                                                 <li><a href="<?php echo base_url() ?>index.php/assets/edit/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Edit</a></li>
-                                                                <li><a href="#">Release to Supplier</a></li>
-                                                                <li><a href="#">Delete</a></li>
-                                                                <li><a href="#">History</a></li>
+                                                                <li><a href="<?php echo base_url() ?>index.php/assets/release/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Release to Supplier</a></li>
+                                                                <li><a href="<?php echo base_url() ?>index.php/assets/delete/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Delete</a></li>
+                                                                <li><a href="<?php echo base_url() ?>index.php/assets/history/<?php echo $asset->asset_id . '/' . $asset_type; ?>">History</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -197,10 +197,9 @@
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="assignedDropdownMenu">
-                                                                <li><a href="#">Edit</a></li>
-                                                                <li><a href="#">Release to Supplier</a></li>
-                                                                <li><a href="#">Delete</a></li>
-                                                                <li><a href="#">History</a></li>
+                                                                <li><a href="<?php echo base_url() . 'index.php/assets/reassign/'.$asset_type.'/'.$asset->asset_id ?>">Re-Assign</a></li>
+                                                                <li><a href="<?php echo base_url() . 'index.php/assets/discard/'.$asset_type.'/'.$asset->asset_id ?>">Discard</a></li>
+                                                                <li><a href="<?php echo base_url() . 'index.php/assets/release/'.$asset_type.'/'.$asset->asset_id ?>">Release</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>

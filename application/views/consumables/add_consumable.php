@@ -6,7 +6,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add Consumable <a href="<?php echo base_url(); ?>index.php/assets" class="btn btn-primary">View All Assets</a> <a href="#" class="btn btn-default">Import Assets</a></h1>
+                    <h1 class="page-header">Add Consumable <a href="<?php echo base_url(); ?>index.php/consumables" class="btn btn-primary">View All Assets</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -28,7 +28,7 @@
                                         <div class="form-group">
                                             <label>Select Consumable</label>
                                             <select class="form-control" name="consumable" id="consumable" required>
-                                                <option value="">----Select Category----</option>
+                                                <option value="">----Select Consumable----</option>
                                                 <?php
                                                     if(isset($categories)){
                                                         foreach($categories as $category){

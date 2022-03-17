@@ -220,6 +220,11 @@ class Assets_model extends CI_Model{
 		$this->db->update('assets',$data);
 	}
 
+	public function delete_asset($asset_id){
+		$this->db->where('asset_id', $asset_id);
+		$this->db->delete('assets');
+	}
+
 	public function get_locations(){
 		$query = $this->db->get('locations');
 		if($query->num_rows() > 1){
@@ -251,5 +256,14 @@ class Assets_model extends CI_Model{
 			'location' => $this->input->post('location'),
 		);
 		$this->db->insert('user_asset', $data);
+	}
+
+	public function reassign_asset($asset_id, $user_id){
+		$data = array(
+			'staff_id' => $user_id,
+			'asset_id' => $asset_id,
+			'date' => date('Y-m-d')
+		);
+		$this->db->insert('assets_user', $data);
 	}
 }

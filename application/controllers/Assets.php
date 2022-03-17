@@ -100,13 +100,22 @@ class Assets extends CI_Controller {
 		redirect('assets/view_assets/'.$asset_type);
 	}
 
-	public function delete_asset($asset_id){
-		$this->db->where('asset_id', $asset_id);
-		$this->db->delete('assets');
+	public function delete($asset_type, $asset_id){
+		$this->assets_model->delete_asset($asset_id);
+		redirect('assets/view_assets/'.$asset_type);
 	}
 
 	public function asset_history($asset_id){
+		$data['history'] = $this->assets_model->asset_history($asset_id);
+		$this->load->view('assets/history', $data);
+	}
 
+	public function reassign(){
+		$this->assets_model->reassign();
+	}
+
+	public function discard(){
+		$this->assets_model->discard();
 	}
 
 	public function release_to_supplier($asset_id){

@@ -14,10 +14,7 @@ class Consumables extends CI_Controller {
 
 	public function index()
 	{
-		$data['location_name'] = '';
-		$data['location_id'] = '';
-		$data['locations'] = $this->consumables_model->get_locations();
-		$data['consumables'] = null /*$this->assets_model->get_assets()*/;
+		$data['consumables'] = $this->consumables_model->get_consumables();
 		$this->load->view('consumables/consumables',$data);
 	}
 
@@ -59,34 +56,13 @@ class Consumables extends CI_Controller {
 
 	public function add_consumable(){
 		$this->consumables_model->add_consumable();
-		$this->session->set_flashdata('consumable_add','consumable successfully added');
-		
-		//add the new consumable to location inventory
-		$add_option = $this->input->post('add_option');
-		if($add_option == 'all'){
-			$locations = $this->consumables_model->get_locations();
-			foreach($locations as $location){
-				$this->consumables_model->add_consumable_to_location($location->location_id, 2000);
-			}
-		}
-		else{
-			$this->consumables_model->add_consumable_to_location($add_option, 2000);
-		}
+		$this->session->set_flashdata('consumable_add','Consumable successfully added');
 		
 		redirect('consumables');
 	}
 
 	public function assign(){
 		$this->load->view('consumables/assign_consumable');
-	}
-
-	private function new_consumable_code(){
-		$current_code = $this->consumables_model->get_latest_code()->consumable_code;
-		$str1 = substr($current_code, 0, 5);
-		$str2 = substr($current_code, 5);
-		$sum = $str2 + 1;
-		
-		return $str1.$sum;
 	}
 
 	public function edit_consumable($id){
@@ -99,53 +75,6 @@ class Consumables extends CI_Controller {
 		$data['location_id'] = $location_id;
 		$data['consumable'] = $this->consumables_model->get_location_consumable($consumable_code, $location_id);
 		$this->load->view('edit_location_consumable', $data);
-	}
-
-	public function update_consumable($consumable_code){
-		$update_option = $this->input->post('update_option');
-		
-		if(!empty($update_option)){
-			if($update_option == 'all'){
-				$this->consumables_model->update_price($consumable_code);
-				$this->session->set_flashdata('consumable_update','consumable has been updated successfully.');
-				redirect('consumables');
-			}
-			else{
-				$this->consumables_model->update_location_price($consumable_code, $update_option);
-				$this->session->set_flashdata('consumable_update','consumable has been updated successfully.');
-				redirect('consumables');
-			}
-		}
-		else{
-			$this->consumables_model->update_consumable($consumable_code);
-			$this->consumables_model->update_price($consumable_code);
-			$this->session->set_flashdata('consumable_update','consumable has been updated successfully.');
-			redirect('consumables');
-		}
-	}
-
-	function update_location_consumable($consumable_code, $location_id){
-		$this->consumables_model->update_location_price($consumable_code, $location_id);
-		$this->session->set_flashdata('consumable_update','consumable has been updated successfully.');
-		redirect('consumables/location_consumables/'.$location_id);
-	}
-
-	//update the quantities for each consumable in location
-	//after taking of stock with csv file
-	public function update_quantities(){
-		if(isset($_POST['submit'])){
-			$filename = $_FILES['file']['tmp_name'];
-
-			if($_FILES['file']['size'] > 0){
-				$file = fopen($filename, 'r');
-
-				while(($getData = fgetcsv($file, 10000,',')) !== FALSE){
-					$this->consumables_model->update_location_consumable_quantity($getData[0], $getData[1], $getData[2]);
-				}
-				fclose($file);
-			}
-		}
-		redirect('consumables');
 	}
 
 	function import_consumables(){

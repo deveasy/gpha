@@ -6,7 +6,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Edit Asset <a href="<?php echo base_url(); ?>index.php/assets" class="btn btn-primary">View All Assets</a></h1>
+                    <h1 class="page-header">Edit Asset <a href="<?php echo base_url() . 'index.php/assets/view_assets/'.$asset_type; ?>" class="btn btn-primary">View All Assets</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

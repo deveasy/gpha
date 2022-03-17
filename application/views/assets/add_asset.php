@@ -1,12 +1,12 @@
 <?php
-    $data = array('title'=>'Add Asset');
+    $data = array('title'=>'Add New Asset');
     $this->load->view('tpl/side_top',$data);
 ?>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add Asset <a href="<?php echo base_url(); ?>index.php/assets" class="btn btn-primary">View All Assets</a> <a href="#" class="btn btn-default">Import Assets</a></h1>
+                    <h1 class="page-header">Add Asset <a href="<?php echo base_url(); ?>index.php/assets" class="btn btn-primary">View All Assets</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
