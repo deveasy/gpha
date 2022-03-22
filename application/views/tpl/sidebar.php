@@ -67,7 +67,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<?php echo base_url(); ?>index.php/issues"><i class="fa fa-cogs fa-fw"></i> Problems</a>
+                            <a href="<?php echo base_url(); ?>index.php/tickets"><i class="fa fa-cogs fa-fw"></i> Problems</a>
                         </li>
                         <?php endif; ?>
                         <!-- end first privilege user role menu -->

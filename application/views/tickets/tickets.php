@@ -76,25 +76,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        if(isset($products) && !empty($products)){
-                                            foreach($products as $product){
-                                                echo '<tr>';
-                                                echo '<td>'./*$product->product_name.*/'</td>';
-                                                echo '<td>'./*$product->product_category.*/'</td>';
-                                                echo '<td>'./*$product->unit_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td>'./*$product->cost_price.*/'</td>';
-                                                echo '<td><a href="'.base_url().'index.php/products/edit_product/'.$product->product_code.'"><i class="fa fa-edit fa-fw"></i> Edit</a></td>';
-                                                echo '</tr>';
-                                            }
-                                        }
-                                    ?>
+                                <?php if(isset($issues) && !empty($issues)): ?>
+                                    <?php foreach($issues as $issue): ?>
+                                        <tr>
+                                            <td><?php echo $issue->product_name ?></td>
+                                            <td><?php echo $issue->product_category ?></td>
+                                            <td><?php echo $issue->unit_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="assetsDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        Action
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="assetsDropdownMenu">
+                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/edit/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Edit</a></li>
+                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/solve/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Solve</a></li>
+                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/delete/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>';
+                                        </tr>';
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

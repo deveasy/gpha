@@ -10,10 +10,6 @@ $(document).ready(function(){
         return html;
     }
 
-    // function goBack(){
-    //     window.history.back();
-    // }
-
     $("button.back-button").on("click", function(e){
         e.preventDefault();
         window.history.back();
@@ -175,17 +171,6 @@ $(document).ready(function(){
         }
     });
 
-    //function to submit receive stock form
-    $("#receiveStockBtn").click(function(){
-        if($("#warehouse").val() == ""){
-            $("#warehouseDiv").addClass("has-error");
-            $("#warehouse").focus();
-        }
-        else{
-            $("#receiveStockFrm").submit();
-        }
-    })
-
     //function to make product row clickable
     $("tr.trans").click(function(){
     	window.location = $(this).find("a").attr("href");
@@ -285,21 +270,5 @@ $(document).ready(function(){
         if(e.ctrlKey){
             alert('has been pressed.');
         };
-    });
-
-    //function to add prescription detail on new prescription page
-    $("#add-prescription").click(function () {
-        //alert("Are you sure about this you're doing?");
-
-        var medicine = $("#medicine").val();
-        var dosage = $("#dosage").val();
-
-        $("#prescription").append("<div><input type=\"hidden\" name=\"" + inc + "\" value=\"" + medicine + "\"></div>");
-        $("#prescription").append("<div><input type=\"hidden\" name=\"dosage" + inc + "\" value=\"" + dosage + "\"></div>");
-
-        $("#prescription").append("<p><strong>" + inc + ". " + medicine + "</strong></p>");
-        $("#prescription").append("<p>" + dosage + "</p>");
-
-        inc = inc + 1;
     });
 });

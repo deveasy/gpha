@@ -17,11 +17,12 @@ class Tickets extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('assets/view_assets_categories');
+		$data['issues'] = $this->tickets_model->get_tickets();
+		$this->load->view('tickets/tickets', $data);
 	}
 
 	public function new(){
-		$this->load->view('issues/new_ticket');
+		$this->load->view('tickets/new_ticket');
 	}
 	
 
@@ -30,11 +31,12 @@ class Tickets extends CI_Controller {
 		redirect('tickets');
 	}
 
-	public function new_asset($asset_type){
-		$data['asset_type'] = $asset_type;
-		$data['categories'] = $this->assets_model->get_categories();
-		$data['locations'] = $this->assets_model->get_locations();
-		$this->load->view('assets/add_asset', $data);
+	public function edit($ticket_id){
+		$this->load->view('tickets/add_asset');
+	}
+
+	public function solve($ticket_id){
+		$this->load->view('tickets/solve');
 	}
 
 	//function to export from the database
