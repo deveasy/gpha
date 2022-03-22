@@ -140,23 +140,6 @@ class Assets_model extends CI_Model{
 		$this->db->insert('assets',$data);
 	}
 
-	public function update_asset_status(){
-		$data = array(
-			'asset_id' => '',
-		);
-		$this->db->insert('status', $data);
-	}
-
-	public function add_asset_to_location($location_id, $quantity){
-		$data = array(
-			'location_id' => $location_id,
-			'asset_code' => $this->input->post('asset_code'),
-			'unit_price' => $this->input->post('unit_price'),
-			'quantity_in_stock' => $quantity
-		);
-		$this->db->insert('location_inventory', $data);
-	}
-
 	public function get_asset($id){
 		$this->db->select('*');
 		$this->db->from('assets');

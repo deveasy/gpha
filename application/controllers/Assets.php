@@ -83,7 +83,7 @@ class Assets extends CI_Controller {
 	}
 
 	public function update_asset($asset_id, $asset_type){
-		$this->assets_model->update_asset($asset_id);
+		$this->assets_model->update_asset($asset_id, $asset_type);
 		$this->session->set_flashdata('asset_update','Asset has been updated successfully.');
 		redirect('assets/view_assets/' . $asset_type);
 	}
