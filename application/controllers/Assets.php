@@ -59,10 +59,15 @@ class Assets extends CI_Controller {
 		$this->load->view('assets/view_assets', $data);
 	}
 
+	public function get_models($brand_id){
+		$data = $this->assets_model->get_models($brand_id);
+		echo json_encode($data);
+	}
+
 	public function new_asset($asset_type){
+		$data['suppliers'] = $this->assets_model->get_suppliers();
 		$data['asset_type'] = $asset_type;
 		$data['categories'] = $this->assets_model->get_asset_types();
-		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('assets/add_asset', $data);
 	}
 
@@ -74,11 +79,11 @@ class Assets extends CI_Controller {
 	}
 
 	public function edit($asset_id, $asset_type){
+		$data['suppliers'] = $this->assets_model->get_suppliers();
 		$data['asset_id'] = $asset_id;
 		$data['asset_type'] = $asset_type;
 		$data['asset'] = $this->assets_model->get_asset($asset_id);
 		$data['categories'] = $this->assets_model->get_asset_types();
-		$data['locations'] = $this->assets_model->get_locations();
 		$this->load->view('assets/edit_asset', $data);
 	}
 

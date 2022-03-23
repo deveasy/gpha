@@ -146,6 +146,7 @@ class Assets_model extends CI_Model{
 		$this->db->where('asset_id',$id);
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
 		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
+		$this->db->join('brands', 'assets.brand = brands.brand_id', 'left');
 
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
@@ -154,31 +155,6 @@ class Assets_model extends CI_Model{
 		else{
 			return false;
 		}
-	}
-
-	function get_location_asset($asset_code, $location_id){
-		$this->db->select('location_inventory.asset_code, asset_category, asset_name, location_inventory.unit_price, reorder_level');
-		$this->db->from('location_inventory');
-		$this->db->join('assets','assets.asset_code = location_inventory.asset_code');
-		$this->db->where('location_id', $location_id);
-		$this->db->where('location_inventory.asset_code', $asset_code);
-
-		$query = $this->db->get();
-		if($query->num_rows() > 0){
-			return $query->row();
-		}
-		else{
-			return false;
-		}
-	}
-
-	public function update_location_asset_quantity($location_id, $code, $qty){
-		$data = array(
-			'quantity_in_stock' => $qty
-		);
-		$this->db->where('location_id', $location_id);
-		$this->db->where('asset_code', $code);
-		$this->db->update('location_inventory', $data);
 	}
 
 	public function update_asset($id, $asset_type){
@@ -206,16 +182,6 @@ class Assets_model extends CI_Model{
 	public function delete_asset($asset_id){
 		$this->db->where('asset_id', $asset_id);
 		$this->db->delete('assets');
-	}
-
-	public function get_locations(){
-		$query = $this->db->get('locations');
-		if($query->num_rows() > 1){
-			return $query->result();
-		}
-		else{
-			return false;
-		}
 	}
 
 	public function get_users(){
@@ -248,5 +214,22 @@ class Assets_model extends CI_Model{
 			'date' => date('Y-m-d')
 		);
 		$this->db->insert('assets_user', $data);
+	}
+
+	public function get_brands(){
+		$query = $this->db->get('brands');
+		return $query->result();
+	}
+
+	public function get_suppliers(){
+		$query = $this->db->get('suppliers');
+		return $query->result();
+	}
+
+	public function get_models($brand_id){
+		$this->db->where('brand', $brand_id);
+		$this->db->order_by('model_name', 'ASC');
+		$query = $this->db->get('models');
+		return $query->result();
 	}
 }

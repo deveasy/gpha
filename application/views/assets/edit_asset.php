@@ -58,12 +58,12 @@
                                 <div class="col-lg-4 col-md-4">
                                         <div class="form-group">
                                             <label>Select Brand</label>
-                                            <select class="form-control" id="brand" name="brand" disabled>
+                                            <select class="form-control" id="brand" name="brand">
                                                 <option value="">----Select Brand----</option>
                                                 <?php
                                                     if(isset($brands)){
                                                         foreach($brands as $brand){
-                                                            echo '<option value="'.$brand->brand_id.'" '.(($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)).'>'.$brand->brand_name.'</option>';
+                                                            echo '<option value="'.$brand->brand_id.'" '.(($asset->brand == $brand->brand_id) ? set_select('assetCategory', $brand->brand_id, true) : set_select('assetCategory', $brand->brand_id, false)).'>'.$brand->brand_name.'</option>';
                                                         }
                                                     }
                                                 ?>
@@ -88,7 +88,7 @@
                                                 <?php
                                                     if(isset($suppliers)){
                                                         foreach($suppliers as $supplier){
-                                                            echo '<option value="'.$supplier->supplier_id.'" '.(($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)).'>'.$supplier->supplier_name.'</option>';
+                                                            echo '<option value="'.$supplier->supplier_id.'" '.(($asset->supplier_id == $supplier->supplier_id) ? set_select('assetCategory', $supplier->supplier_id, true) : set_select('assetCategory', $supplier->supplier_id, false)).'>'.$supplier->supplier_name.'</option>';
                                                         }
                                                     }
                                                 ?>
@@ -100,13 +100,16 @@
                                 <div class="col-lg-4 col-md-4">
                                         <div class="form-group">
                                             <label>Select Model</label>
-                                            <select class="form-control" id="model" name="model" disabled>
+                                            <select class="form-control" id="model" name="model">
                                                 <option value="">----Select Model----</option>
                                                 <?php
                                                     if(isset($models)){
                                                         foreach($models as $model){
-                                                            echo '<option value="'.$model->model_id.'" '.(($asset->asset_type == $category->asset_type_id) ? set_select('assetCategory', $category->asset_type_id, true) : set_select('assetCategory', $category->asset_type_id, false)).'>'.$model->model_name.'</option>';
+                                                            echo '<option value="'.$model->model_id.'" '.(($asset->model == $model->model_id) ? set_select('assetCategory', $model->model_id, true) : set_select('assetCategory', $model->model_id, false)).'>'.$model->model_name.'</option>';
                                                         }
+                                                    }
+                                                    else{
+
                                                     }
                                                 ?>
                                             </select>
@@ -143,27 +146,26 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-        <script>
-            var base_url = "<?php echo base_url(); ?>";
-
+        <script type="text/javascript">
             $(document).ready(function(){
-                $("#lanMac").autocomplete({
-                    source: function(request, response){
-                        $.ajax({
-                            url: base_url + "index.php/assets/search",
-                            data: {
-                                term: request.term
-                            },
-                            dataType: "json",
-                            success: function(data){
-                                var resp = $.map(data, function(obj){
-                                    return obj.name;
-                                });
-                                response(resp);
+                $('#brand').change(function(){
+                    var id = $(this).val();
+                    $.ajax({
+                        url : "<?php echo base_url('index.php/assets/get_models/'); ?>" + id,
+                        method : "POST",
+                        data : {id: id},
+                        async : true,
+                        dataType : 'json',
+                        success : function(data){
+                            var html = '';
+                            var i;
+                            for(i=0; i<data.length; i++){
+                                html += '<option value=' + data[i].model_id + '>' + data[i].model_name + '</option>';
                             }
-                        });
-                    },
-                    minLength: 1
+                            $('#model').html(html);
+                        }
+                    });
+                    return false;
                 });
             });
         </script>

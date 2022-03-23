@@ -32,7 +32,7 @@
                                                 <?php
                                                     if(isset($categories)){
                                                         foreach($categories as $category){
-                                                            echo '<option value="'.$category->category_id.'">'.$category->category_name.'</option>';
+                                                            echo '<option value="'.$category->asset_type_id.'">'.$category->type_name.'</option>';
                                                         }
                                                     }
                                                 ?>
@@ -60,7 +60,7 @@
                                 <div class="col-lg-4 col-md-4">
                                         <div class="form-group">
                                             <label>Select Brand</label>
-                                            <select class="form-control" id="brand" name="brand" disabled>
+                                            <select class="form-control" id="brand" name="brand">
                                                 <option value="">----Select Brand----</option>
                                                 <?php
                                                     if(isset($brands)){
@@ -102,7 +102,7 @@
                                 <div class="col-lg-4 col-md-4">
                                         <div class="form-group">
                                             <label>Select Model</label>
-                                            <select class="form-control" id="model" name="model" disabled>
+                                            <select class="form-control" id="model" name="model">
                                                 <option value="">----Select Model----</option>
                                                 <?php
                                                     if(isset($models)){
@@ -145,27 +145,26 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-        <script>
-            var base_url = "<?php echo base_url(); ?>";
-
+        <script type="text/javascript">
             $(document).ready(function(){
-                $("#lanMac").autocomplete({
-                    source: function(request, response){
-                        $.ajax({
-                            url: base_url + "index.php/assets/search",
-                            data: {
-                                term: request.term
-                            },
-                            dataType: "json",
-                            success: function(data){
-                                var resp = $.map(data, function(obj){
-                                    return obj.name;
-                                });
-                                response(resp);
+                $('#brand').change(function(){
+                    var id = $(this).val();
+                    $.ajax({
+                        url : "<?php echo base_url('index.php/assets/get_models/'); ?>" + id,
+                        method : "POST",
+                        data : {id: id},
+                        async : true,
+                        dataType : 'json',
+                        success : function(data){
+                            var html = '';
+                            var i;
+                            for(i=0; i<data.length; i++){
+                                html += '<option value=' + data[i].model_id + '>' + data[i].model_name + '</option>';
                             }
-                        });
-                    },
-                    minLength: 1
+                            $('#model').html(html);
+                        }
+                    });
+                    return false;
                 });
             });
         </script>
