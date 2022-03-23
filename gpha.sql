@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 17, 2022 at 01:12 PM
+-- Generation Time: Mar 23, 2022 at 09:43 PM
 -- Server version: 8.0.27
 -- PHP Version: 7.4.26
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `assets` (
   `status` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'available',
   PRIMARY KEY (`asset_id`),
   KEY `asset_type` (`asset_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `assets`
@@ -69,7 +69,8 @@ INSERT INTO `assets` (`asset_id`, `asset_type`, `brand`, `computer_tag_name`, `a
 (4, 28, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'fgf', NULL, 'hg', 'fgf', NULL, 'fgf', NULL, NULL, 'available'),
 (5, 28, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'hfd', NULL, 'dgsd', 'hh', NULL, 'hh', NULL, NULL, 'available'),
 (6, 28, NULL, NULL, NULL, 'ggfgf', 0, NULL, NULL, NULL, '2022-02-09', NULL, NULL, NULL, 'ghh', 'dgdh', 'hfd', 'hhh', 'dgsd', 'hh', 'hhh', 'fgf', NULL, NULL, 'available'),
-(7, 28, NULL, NULL, NULL, 'ggfgf', 0, NULL, NULL, NULL, '2022-01-28', '2023-05-14', NULL, NULL, 'ghh', 'fgg', 'hfd', 'hh', 'hg', 'fgf', 'hhh', 'fgf', NULL, NULL, 'available');
+(7, 28, NULL, NULL, NULL, 'ggfgf', 0, NULL, NULL, NULL, '2022-01-28', '2023-05-14', NULL, NULL, 'ghh', 'fgg', 'hfd', 'hh', 'hg', 'fgf', 'hhh', 'fgf', NULL, NULL, 'available'),
+(8, 28, '19', NULL, NULL, 'sdfgsdf', 6, NULL, NULL, NULL, '2022-03-17', '2022-03-09', NULL, '8', 'fsgfs', 'sdfgsdf', 'sfgsf', 'sfgs', 'sdfgsdf', 'sfsgf', 'sfgsf', 'dfsgfsd', NULL, NULL, 'available');
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,45 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `brand_type` int DEFAULT NULL,
   `brand description` text,
   PRIMARY KEY (`brand_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_type`, `brand description`) VALUES
+(1, '79A', 0, ''),
+(2, 'ALGIZ', 0, ''),
+(3, 'ANATEL', 0, ''),
+(4, 'APPLE', 0, ''),
+(5, 'BAKUSA', 0, ''),
+(6, 'CANON', 0, ''),
+(7, 'CAT 6', 0, ''),
+(8, 'CISCO', 0, ''),
+(9, 'CONKER TAB', 0, ''),
+(10, 'CONVERTORS', 0, ''),
+(11, 'DELL', 0, ''),
+(12, 'D-LINK', 0, ''),
+(13, 'DS-1200 KI', 0, ''),
+(14, 'EPSON', 0, ''),
+(15, 'FORTI APS', 0, ''),
+(16, 'FORTIGATE', 0, ''),
+(17, 'FUJITSU', 0, ''),
+(18, 'HIKVISION', 0, ''),
+(19, 'HP', 0, ''),
+(20, 'KODAK', 0, ''),
+(21, 'LENOVO', 0, ''),
+(22, 'LOGITECH', 0, ''),
+(23, 'MICROSOFT', 0, ''),
+(24, 'MSI AEGIS RS', 0, ''),
+(25, 'MSI MPG', 0, ''),
+(26, 'PELCO', 0, ''),
+(27, 'POE SWITCH', 0, ''),
+(28, 'SAMSUNG', 0, ''),
+(29, 'TRENDNET', 0, ''),
+(30, 'UBIQUITI', 0, ''),
+(31, 'UNIFY', 0, ''),
+(32, 'ZKTECO', 0, '');
 
 -- --------------------------------------------------------
 
@@ -403,7 +442,23 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('sdqfvjbbbcges9v9f0080no2qvlc7p0f', '::1', 1647511591, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373531313438373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
 ('7a5266hr0b56amiivkke6bbdkhq39ipc', '::1', 1647517747, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373531373734373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
 ('lpogi93fho0ae2pla2i7q0uo30kk0uj2', '::1', 1647517824, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373531373734373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
-('jm7mc94iijsaa0i2m3l3cv8lh8o8hit6', '::1', 1647522084, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373532323037373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d);
+('jm7mc94iijsaa0i2m3l3cv8lh8o8hit6', '::1', 1647522084, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373532323037373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('7ociruitp7tn3vjlc9frf07dl685dfu0', '::1', 1647958288, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373935383238363b),
+('ql8k7vib78r4j2hpi3df2ag91ovcgaj9', '::1', 1647985164, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373938353136343b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('f9kgfhlv3tjp7ranc45j6gvauqi22pua', '::1', 1647985175, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634373938353136343b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('mp6mllii0m8l3gtm9knolm0tsr419igi', '::1', 1648053398, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035333339383b),
+('cfnuprg62g212b1tqj01smp6uvri5op4', '::1', 1648056151, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035363135313b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('gnik30hmoukp027p2maiqoap3cvc2r1u', '::1', 1648056827, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035363832373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('h6t39k9b8jgtsbn45ud0gegahnoopkpb', '::1', 1648058077, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035383037373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('19apjpt2uejgqks3iqoeo3qdqh9j93oq', '::1', 1648058508, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035383530383b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('it9q27ft6oao9pmq8jcl9so30vle20i1', '::1', 1648058915, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035383931353b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('5guf1vnonc3e227nhgdtu7g30da8ermk', '::1', 1648059222, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035393232323b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('v1d4r4tgp4ihs8dhiolo2q4fosr1ma28', '::1', 1648059766, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383035393736363b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('2tlbbrm6b4ikatgjsi0o5qhenrrbvlcm', '::1', 1648062845, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383036323834353b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('5ljsq8geu81j9i5amgavag7t14hs97or', '::1', 1648064947, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383036343934373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('9ikv316i7qpj51ceh0t7nqrki8vuar1d', '::1', 1648064947, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383036343934373b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('on415qbrjshqc3c6cetnq2qab8ceajnl', '::1', 1648069569, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383036393536393b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d),
+('o3vlarcv480ooih73mpbgru85pef5iba', '::1', 1648069569, 0x5f5f63695f6c6173745f726567656e65726174657c693a313634383036393536393b6c6f676765645f696e7c613a353a7b733a383a2273746166665f6964223b733a313a2231223b733a393a2266697273746e616d65223b733a383a22456d6d616e75656c223b733a383a226c6173746e616d65223b733a363a22596172746579223b733a343a22726f6c65223b733a313a2231223b733a383a226c6f636174696f6e223b4e3b7d);
 
 -- --------------------------------------------------------
 
@@ -444,7 +499,29 @@ CREATE TABLE IF NOT EXISTS `departments` (
   `department_description` text,
   `location` int DEFAULT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`department_id`, `department_name`, `department_description`, `location`) VALUES
+(1, 'ELECTRICAL ENGINEERING', 'Department', 0),
+(2, 'FINANCE', 'Department', 0),
+(3, 'FIRE & SAFETY', 'Department', 0),
+(4, 'GOLDEN JUBILEE', 'Department', 0),
+(5, 'HUMAN RESOURCE', 'Department', 0),
+(6, 'INFORMATION TECHNOLOGY', 'Department', 0),
+(7, 'INTERNAL AUDIT', 'Department', 0),
+(8, 'LOGISTICS', 'Department', 0),
+(9, 'MARKETING', 'Department', 0),
+(10, 'MECHANICAL ENGINEERING', 'Department', 0),
+(11, 'MONITORING', 'Department', 0),
+(12, 'PORT OPERATIONS', 'Department', 0),
+(13, 'REEFER TERMINAL', 'Department', 0),
+(14, 'SECURITY', 'Department', 0),
+(15, 'TERMINAL 1', 'Department', 0),
+(16, 'TRANSIT TERMINAL', 'Department', 0);
 
 -- --------------------------------------------------------
 
@@ -543,7 +620,34 @@ CREATE TABLE IF NOT EXISTS `models` (
   `model_name` varchar(100) DEFAULT NULL,
   `brand` int DEFAULT NULL,
   PRIMARY KEY (`model_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `models`
+--
+
+INSERT INTO `models` (`model_id`, `model_name`, `brand`) VALUES
+(1, 'COMPAQ 6200', 19),
+(2, 'PRO 3120', 19),
+(3, 'Slic-pc', 19),
+(4, 'PRO ONE 3120MT', 19),
+(5, 'COMPAQ 500B', 19),
+(6, 'Compaq DX2420', 19),
+(7, 'PRO 3500', 19),
+(8, 'COMPAQ 500', 19),
+(9, 'DX2810 MT', 19),
+(10, 'DESKTOP', 11),
+(11, 'OPTIPLEX', 11),
+(12, 'OPTIPLEX 380', 11),
+(13, 'OPTIPLEX 3010', 11),
+(14, 'OPTIPLEX 390', 11),
+(15, 'OPTIPLEX 745c', 11),
+(16, 'OPTIPLEX 755', 11),
+(17, 'OPTIPLEX 790', 11),
+(18, 'OPTIPLEX 9010', 11),
+(19, 'OPTIPLEX 9030', 11),
+(20, 'OPTIPLEX 760', 11),
+(21, 'COMPAQ 500B MICROTOWER', 11);
 
 -- --------------------------------------------------------
 
@@ -670,26 +774,72 @@ CREATE TABLE IF NOT EXISTS `staff_location` (
 DROP TABLE IF EXISTS `suppliers`;
 CREATE TABLE IF NOT EXISTS `suppliers` (
   `supplier_id` int NOT NULL AUTO_INCREMENT,
-  `company` varchar(100) DEFAULT NULL,
+  `supplier_name` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `contact_person` varchar(100) DEFAULT NULL,
-  `firstname` varchar(50) DEFAULT NULL,
-  `contact_email` varchar(100) DEFAULT NULL,
-  `contact_person_job_title` varchar(50) DEFAULT NULL,
+  `supplier_email` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `contact_role` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `business_phone` varchar(50) DEFAULT NULL,
-  `home_phone` varchar(50) DEFAULT NULL,
   `mobile_phone` varchar(50) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
-  `state_province` varchar(50) DEFAULT NULL,
-  `zip_postal_code` varchar(20) DEFAULT NULL,
   `country` varchar(150) DEFAULT NULL,
   `website` varchar(150) DEFAULT NULL,
-  `notes` text,
-  `attachments` varchar(50) DEFAULT NULL,
-  `supplier_name` varchar(50) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `contact_person`, `supplier_email`, `contact_role`, `business_phone`, `mobile_phone`, `address`, `city`, `country`, `website`) VALUES
+(1, 'ACCUGEOSPATIAL CO. LTD', '', '', '', '', '', '', '', '', ''),
+(2, 'ACTIVE IT SOLUTIONS GHANA LTD', '', '', '', '', '', '', '', '', ''),
+(3, 'ADMINDROID', '', '', '', '', '', '', '', '', ''),
+(4, 'AD-PRECISION', '', '', '', '', '', '', '', '', ''),
+(5, 'AOEN VENTURES', '', '', '', '', '', '', '', '', ''),
+(6, 'ASAS CO. LTD', '', '', '', '', '', '', '', '', ''),
+(7, 'CANWEST LTD', '', '', '', '', '', '', '', '', ''),
+(8, 'COMPU GHANA', '', '', '', '', '', '', '', '', ''),
+(9, 'DATA BYTES', '', '', '', '', '', '', '', '', ''),
+(10, 'DEALER COS COMPANY LTD', '', '', '', '', '', '', '', '', ''),
+(11, 'DELIVERY PERIOD VENTURES', '', '', '', '', '', '', '', '', ''),
+(12, 'DELL INC.', '', '', '', '', '', '', '', '', ''),
+(13, 'DIGITAL DOCUMENT SERVICES', '', '', '', '', '', '', '', '', ''),
+(14, 'DREAMOVAL', '', '', '', '', '', '', '', '', ''),
+(15, 'ELECTROMETER', '', '', '', '', '', '', '', '', ''),
+(16, 'FORTINET', '', '', '', '', '', '', '', '', ''),
+(17, 'FUJITSU', '', '', '', '', '', '', '', '', ''),
+(18, 'GET 4 LESS', '', '', '', '', '', '', '', '', ''),
+(19, 'GLOBNET SOLUTIONS', '', '', '', '', '', '', '', '', ''),
+(20, 'GPHA', '', '', '', '', '', '', '', '', ''),
+(21, 'GUARDIAN TECH', '', '', '', '', '', '', '', '', ''),
+(22, 'HEYCO TECH', '', '', '', '', '', '', '', '', ''),
+(23, 'HIS MARKIT', '', '', '', '', '', '', '', '', ''),
+(24, 'IPMC', '', '', '', '', '', '', '', '', ''),
+(25, 'JASUBIN ENTERPRISE', '', '', '', '', '', '', '', '', ''),
+(26, 'LYKTECH SERVICES LTD', '', '', '', '', '', '', '', '', ''),
+(27, 'MICROSOFT CORPORATION', '', '', '', '', '', '', '', '', ''),
+(28, 'N/A', '', '', '', '', '', '', '', '', ''),
+(29, 'NAVIS', '', '', '', '', '', '', '', '', ''),
+(30, 'OFFICE PAL', '', '', '', '', '', '', '', '', ''),
+(31, 'OLIVA COMMUNICATIONS LTD', '', '', '', '', '', '', '', '', ''),
+(32, 'OSTEC LIMITED', '', '', '', '', '', '', '', '', ''),
+(33, 'PDSA', '', '', '', '', '', '', '', '', ''),
+(34, 'PERFECT', '', '', '', '', '', '', '', '', ''),
+(35, 'PERFECT BUSINESS', '', '', '', '', '', '', '', '', ''),
+(36, 'PERSOL', '', '', '', '', '', '', '', '', ''),
+(37, 'PRIMUS', '', '', '', '', '', '', '', '', ''),
+(38, 'PRINTER SOLUTIONS', '', '', '', '', '', '', '', '', ''),
+(39, 'QUANTUM LOGIC', '', '', '', '', '', '', '', '', ''),
+(40, 'QUEMIN SUPPLY AND TRADING LTD', '', '', '', '', '', '', '', '', ''),
+(41, 'RHYTEX', '', '', '', '', '', '', '', '', ''),
+(42, 'STL GHANA LIMITED', '', '', '', '', '', '', '', '', ''),
+(43, 'TECCL', '', '', '', '', '', '', '', '', ''),
+(44, 'TEKCARE', '', '', '', '', '', '', '', '', ''),
+(45, 'TRADEMART GHANA LTD', '', '', '', '', '', '', '', '', ''),
+(46, 'TRENT UK INT. LTD', '', '', '', '', '', '', '', '', ''),
+(47, 'VEEAM', '', '', '', '', '', '', '', '', ''),
+(48, 'VMWARE INC.', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
