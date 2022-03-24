@@ -22,6 +22,7 @@ class Assets_model extends CI_Model{
 		$this->db->where('asset_type', $asset_type_id);
 		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
+		$this->db->join('brands', 'assets.brand = brands.brand_id','left');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -146,7 +147,7 @@ class Assets_model extends CI_Model{
 		$this->db->where('asset_id',$id);
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
 		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
-		$this->db->join('brands', 'assets.brand = brands.brand_id', 'left');
+		$this->db->join('models', 'assets.model = models.model_id', 'left');
 
 		$query = $this->db->get();
 		if($query->num_rows() > 0){

@@ -44,8 +44,6 @@ class Auth extends CI_Controller {
 		$username = $this->input->post('username');
 
 		$result = $this->auth_model->login($username, $password);
-		// $locations = $this->auth_model->get_locations();
-		// $warehouses = $this->auth_model->get_warehouses();
 
 		if($result){
 			$sess_array = array();
@@ -59,8 +57,6 @@ class Auth extends CI_Controller {
 				);
 				$this->session->set_userdata('logged_in',$sess_array);
 			}
-		//	$this->session->set_userdata('locations', $locations);
-		//	$this->session->set_userdata('warehouses', $warehouses);
 			return true;
 		}
 		else{

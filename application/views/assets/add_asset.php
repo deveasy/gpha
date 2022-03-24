@@ -156,7 +156,7 @@
                         async : true,
                         dataType : 'json',
                         success : function(data){
-                            var html = '';
+                            var html = '<option>--- Select Model ---</option>';
                             var i;
                             for(i=0; i<data.length; i++){
                                 html += '<option value=' + data[i].model_id + '>' + data[i].model_name + '</option>';

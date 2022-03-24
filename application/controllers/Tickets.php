@@ -22,7 +22,8 @@ class Tickets extends CI_Controller {
 	}
 
 	public function new(){
-		$this->load->view('tickets/new_ticket');
+		$data['departments'] = $this->tickets_model->get_departments();
+		$this->load->view('tickets/new_ticket', $data);
 	}
 	
 

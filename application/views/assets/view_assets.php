@@ -82,7 +82,7 @@
                                                     <?php foreach($assets as $asset): ?>
                                                 <tr>
                                                     <td><?php echo $asset->type_name ?></td>
-                                                    <td><?php echo $asset->brand ?></td>
+                                                    <td><?php echo $asset->brand_name ?></td>
                                                     <td><?php echo $asset->serial_number ?></td>
                                                     <td><?php echo $asset->location ?></td>
                                                     <td><?php echo $asset->supplier_name ?></td>

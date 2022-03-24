@@ -13,37 +13,11 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Issues &amp; Solutions</h1>
+                    <h1 class="page-header">Issues &amp; Solutions <a href="<?php echo base_url() ?>index.php/tickets/new" class="btn btn-primary pull-right">+ Report a problem</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /. header row -->
-            <!-- buttons row -->
-            <div class="row buttons-row">
-                <div class="col-lg-6">
-                    <a href="<?php echo base_url() ?>index.php/tickets/new" class="btn btn-primary">+ Report a problem</a>
-                </div>
-                <div class="col-lg-6">
-                    <?php
-                        $attributes = array('class'=>'form-inline');
-                        echo form_open('products/shop_products', $attributes);
-                    ?>
-                        <div class="form-group">
-                            <label>Select Location:</label>
-                            <select class="form-control" name="shop" onchange="this.form.submit()">
-                                <option> - Select - </option>
-                                <option value="all">All Locations</option>
-                                <?php
-                                    foreach ($shops as $shop) {
-                                        echo '<option value="'.$shop->shop_id.'">'.$shop->shop_name.'</option>';
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /. buttons row -->
             <div class="row">
                 <div class="col-lg-12">
                     <?php 
@@ -63,8 +37,6 @@
                                 <thead>
                                     <tr>
                                         <th>Staff</th>
-                                        <th>Equipment Type</th>
-                                        <th>Serial</th>
                                         <th>Unit</th>
                                         <th>Department</th>
                                         <th>Problem Type</th>
@@ -80,15 +52,13 @@
                                     <?php foreach($issues as $issue): ?>
                                         <tr>
                                             <td><?php echo $issue->product_name ?></td>
-                                            <td><?php echo $issue->product_category ?></td>
-                                            <td><?php echo $issue->unit_price ?></td>
                                             <td><?php echo $issue->cost_price ?></td>
                                             <td><?php echo $issue->cost_price ?></td>
-                                            <td><?php echo $issue->cost_price ?></td>
-                                            <td><?php echo $issue->cost_price ?></td>
-                                            <td><?php echo $issue->cost_price ?></td>
-                                            <td><?php echo $issue->cost_price ?></td>
-                                            <td><?php echo $issue->cost_price ?></td>
+                                            <td><?php echo $issue->problem_type ?></td>
+                                            <td><?php echo $issue->problem_description ?></td>
+                                            <td><?php echo $issue->report_date ?></td>
+                                            <td><?php echo $issue->reported_by ?></td>
+                                            <td><?php echo $issue->assigned_to ?></td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-primary dropdown-toggle" type="button" id="assetsDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -96,9 +66,9 @@
                                                         <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="assetsDropdownMenu">
-                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/edit/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Edit</a></li>
-                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/solve/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Solve</a></li>
-                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/delete/<?php echo $asset->asset_id . '/' . $asset_type; ?>">Delete</a></li>
+                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/edit/">Edit</a></li>
+                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/solve/">Solve</a></li>
+                                                        <li><a href="<?php echo base_url() ?>index.php/tickets/delete/">Delete</a></li>
                                                     </ul>
                                                 </div>
                                             </td>';

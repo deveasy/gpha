@@ -37,7 +37,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <h2 class="site-title text-center">GPHA Inventory</h2>
+                <h2 class="site-title text-center">Asset &amp; Incident Management System</h2>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sign In</h3>

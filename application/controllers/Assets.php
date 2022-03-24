@@ -80,6 +80,7 @@ class Assets extends CI_Controller {
 
 	public function edit($asset_id, $asset_type){
 		$data['suppliers'] = $this->assets_model->get_suppliers();
+		$data['brands'] = $this->assets_model->get_brands();
 		$data['asset_id'] = $asset_id;
 		$data['asset_type'] = $asset_type;
 		$data['asset'] = $this->assets_model->get_asset($asset_id);
