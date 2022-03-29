@@ -40,15 +40,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Computer Tag Name</label>
-                                            <input type="text" class="form-control" id="computer_tag" name="computer_tag" placeholder="Enter Computer Tag Name" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="computerTag" name="computerTag" placeholder="Enter Computer Tag Name" value="<?php echo set_value('wirelessMac'); ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Asset Tag Name</label>
-                                            <input type="text" class="form-control" id="asset_tag" name="asset_tag" placeholder="Enter Asset Tag Name" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="assetTag" name="assetTag" placeholder="Enter Asset Tag Name" value="<?php echo set_value('wirelessMac'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Asset Barcode</label>
-                                            <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter Barcode" value="<?php echo set_value('wirelessMac'); ?>" required>
+                                            <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter Barcode" value="<?php echo set_value('wirelessMac'); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Date</label>
