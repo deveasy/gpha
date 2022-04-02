@@ -61,7 +61,7 @@ class Assets_model extends CI_Model{
 		$this->db->where('assets.status', 'faulty');
 		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
-		$this->db->join('users', 'assets.assigned_by = users.staff_id');
+		// $this->db->join('users', 'assets.assigned_by = users.staff_id');
 		
 		return $this->db->get('assets')->result();
 	}
@@ -70,7 +70,7 @@ class Assets_model extends CI_Model{
 		$this->db->where('assets.status', 'discarded');
 		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
-		$this->db->join('users', 'assets.assigned_by = users.staff_id');
+		// $this->db->join('users', 'assets.assigned_by = users.staff_id');
 		
 		return $this->db->get('assets')->result();
 	}
@@ -87,7 +87,7 @@ class Assets_model extends CI_Model{
 		$this->db->where('assets.status', 'assigned');
 		$this->db->join('suppliers','assets.supplier_id = suppliers.supplier_id','left');
 		$this->db->join('asset_types', 'assets.asset_type = asset_types.asset_type_id');
-		$this->db->join('users', 'assets.assigned_by = users.staff_id');
+		// $this->db->join('users', 'assets.assigned_by = users.staff_id');
 		
 		return $this->db->get('assets')->result();
 	}
